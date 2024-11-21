@@ -31,3 +31,17 @@ def teardown_db(exception):
 @app.route('/')
 def show_layout():
     return render_template('layout.html',methods=['GET'])
+
+@app.route('/evaluation/show', methods=['GET'])
+def show_evaluation():
+    #print(types_articles)
+    mycursor = get_db().cursor()
+    sql = '''   SELECT id_evaluation AS id,Animateur.Nom_Animateur,Seance.DateSeance,Participant.Nom_Participant,Note_Seance,Note_Animation
+    FROM Evaluation
+    INNER JOIN Animateur ON Evaluation.N_Animateur = Animateur.N_Animateur
+    INNER JOIN Seance ON Evaluation.idSeance = Seance.id_Seance
+    INNER JOIN Participant ON Evaluation.idParticipant = Participant.idParticipant
+    ORDER BY id_evaluation; '''
+    mycursor.execute(sql)
+    genre_film = mycursor.fetchall()
+    return render_template('genre_film/show_genre_film.html', genresFilm=genre_film)

@@ -94,9 +94,9 @@ INSERT INTO Inscription VALUES (1,3,'2025-01-25'),
                                (1,1,'2025-02-13'),
                                (3,2,'2025-03-01');
 
-INSERT INTO Evaluation VALUES (1,1,1,20,17),
-                              (2,2,2,19,20),
-                              (3,3,3,15,11);
+INSERT INTO Evaluation VALUES (NULL,1,1,1,20,17),
+                              (NULL,2,2,2,19,20),
+                              (NULL,3,3,3,15,11);
 
 
 

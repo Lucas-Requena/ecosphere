@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d446f177-a1da-4eff-a1cd-701c1e570b90" name="Changes" comment="ajout du fichier show de l'évalutation">
+    <list default="true" id="d446f177-a1da-4eff-a1cd-701c1e570b90" name="Changes" comment=" mis a jour du sql">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecosphere/sql_projet.sql" beforeDir="false" afterPath="$PROJECT_DIR$/ecosphere/sql_projet.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecosphere/templates/Evaluation/show_evaluation.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecosphere/templates/Evaluation/show_evaluation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecosphere/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecosphere/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecosphere/templates/_nav.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecosphere/templates/_nav.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +65,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1732194314608</updated>
-      <workItem from="1732194315756" duration="3007000" />
+      <workItem from="1732194315756" duration="4748000" />
     </task>
     <task id="LOCAL-00001" summary="ajout des dossier individuel pour le crud">
       <option name="closed" value="true" />
@@ -83,7 +83,23 @@
       <option name="project" value="LOCAL" />
       <updated>1732196798503</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary=" mis a jour du sql">
+      <option name="closed" value="true" />
+      <created>1732197468962</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1732197468962</updated>
+    </task>
+    <task id="LOCAL-00004" summary=" mis a jour du sql">
+      <option name="closed" value="true" />
+      <created>1732197594488</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1732197594488</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -92,6 +108,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="ajout des dossier individuel pour le crud" />
     <MESSAGE value="ajout du fichier show de l'évalutation" />
-    <option name="LAST_COMMIT_MESSAGE" value="ajout du fichier show de l'évalutation" />
+    <MESSAGE value=" mis a jour du sql" />
+    <option name="LAST_COMMIT_MESSAGE" value=" mis a jour du sql" />
   </component>
 </project>
