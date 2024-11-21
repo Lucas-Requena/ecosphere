@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>ajouter une evaluation</title>
+{% endblock %}
+
+{% block body %}
+  <h2>ajout d'une evaluation</h2>
+  <form method="post" action="/animation/add" >
+    <fieldset>
+        <legend> Créer une evaluation</legend>
+        <label for="Nom_Animateur">animateur</label><br>
+        <input id="Nom_Animateur" type="text" name="Nom_Animateur" size="18" value="" placeholder="Saisir le nom de l'animateur" required><br>
+        <label for="DateSeance">date</label><br>
+        <input id="DateSeance" type="date" name="DateSeance" size="18" value="" placeholder="Saisir la date de la seance" required><br>
+        <label for="Nom_Participant">participant</label><br>
+        <input id="Nom_Participant" type="text" name="Nom_Participant" size="18" value="" placeholder="Saisir le nom du participant" required><br>
+        <label for="Note_Seance">note seance</label><br>
+        <input id="Note_Seance" type="text" name="Note_Seance" size="18" value="" placeholder="Saisir la note de la seance" required><br>
+        <label for="Note_Animation">note animation</label><br>
+        <input id="Note_Animation" type="text" name="Note_Animation" size="18" value="" placeholder="Saisir la note de l'animation" required><br>
+
+        <input type="submit" value="Creer" name="Valider" >
+    </fieldset>
+  </form>
+{% endblock %}

@@ -61,6 +61,23 @@ def delete_evaluation():
     get_db().commit()
     return redirect('/evaluation/show')
 
-@app.route('/genre-film/add', methods=['GET'])
-def add_genre():
-    return render_template('genre_film/add_genre_film.html')
+@app.route('/animation/add', methods=['GET'])
+def add_evaluation():
+    return render_template('Evaluation/add_evaluation.html')
+
+@app.route('/animation/add', methods=['POST'])
+def valid_add_evaluation():
+    Nom_Animateur = request.form.get('Nom_Animateur', '')
+    DateSeance = request.form.get('DateSeance', '')
+    Nom_Participant = request.form.get('Nom_Participant', '')
+    Note_Seance = request.form.get('Note_Seance', '')
+    Note_Animation = request.form.get('Note_Animation', '')
+    mycursor = get_db().cursor()
+    sql = ''' INSERT INTO Evaluation(idSeance,idSeance,idParticipant,Note_Seance,Note_Animation) VALUES (NULL, %s, %s, %s, %s, %s);'''
+    tuple_sql = (Nom_Animateur,DateSeance,Nom_Participant,Note_Seance,Note_Animation)
+    mycursor.execute(sql, tuple_sql)
+
+    get_db().commit()
+    message = u'evaluation ajouté , animateur :'+Nom_Animateur,"date :"+DateSeance,"participant :"+Nom_Participant,"note de seance :"+Note_Seance,"note d'animation"+Note_Animation
+    flash(message, 'alert-success')
+    return redirect('/evaluation/show')
