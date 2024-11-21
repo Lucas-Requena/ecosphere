@@ -9,8 +9,14 @@
   <form method="post" action="/animation/add" >
     <fieldset>
         <legend> Créer une evaluation</legend>
+
         <label for="Nom_Animateur">animateur</label><br>
-        <input id="Nom_Animateur" type="text" name="Nom_Animateur" size="18" value="" placeholder="Saisir le nom de l'animateur" required><br>
+        <select name="Nom_Animateur" id="Nom_Animateur"   required>
+            <option value="">selectionner l'animateur</option>
+            {% for type in Animateur %}
+            <option value="{{ type.N_Animateur }}"> {{ type.Nom_Animateur }} </option>
+            {% endfor %}
+        </select><br>
         <label for="DateSeance">date</label><br>
         <input id="DateSeance" type="date" name="DateSeance" size="18" value="" placeholder="Saisir la date de la seance" required><br>
         <label for="Nom_Participant">participant</label><br>

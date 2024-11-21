@@ -36,12 +36,12 @@ def show_layout():
 def show_evaluation():
     #print(types_articles)
     mycursor = get_db().cursor()
-    sql = '''   SELECT id_evaluation AS id,Animateur.Nom_Animateur,Seance.DateSeance,Participant.Nom_Participant,Note_Seance,Note_Animation
+    sql = '''SELECT id_evaluation AS id,Animateur.Nom_Animateur,Seance.DateSeance,Participant.Nom_Participant,Note_Seance,Note_Animation
     FROM Evaluation
     INNER JOIN Animateur ON Evaluation.N_Animateur = Animateur.N_Animateur
     INNER JOIN Seance ON Evaluation.idSeance = Seance.id_Seance
     INNER JOIN Participant ON Evaluation.idParticipant = Participant.idParticipant
-    ORDER BY id_evaluation; '''
+    ORDER BY id_evaluation;'''
     mycursor.execute(sql)
     evaluations = mycursor.fetchall()
     return render_template('Evaluation/show_evaluation.html', evaluation=evaluations)
@@ -73,7 +73,7 @@ def valid_add_evaluation():
     Note_Seance = request.form.get('Note_Seance', '')
     Note_Animation = request.form.get('Note_Animation', '')
     mycursor = get_db().cursor()
-    sql = ''' INSERT INTO Evaluation(idSeance,idSeance,idParticipant,Note_Seance,Note_Animation) VALUES (NULL, %s, %s, %s, %s, %s);'''
+    sql = ''' INSERT INTO Evaluation(id_evaluation,N_Animateur,idSeance,idParticipant,Note_Seance,Note_Animation) VALUES (NULL, %s, %s, %s, %s, %s);'''
     tuple_sql = (Nom_Animateur,DateSeance,Nom_Participant,Note_Seance,Note_Animation)
     mycursor.execute(sql, tuple_sql)
 

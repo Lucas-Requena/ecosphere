@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d446f177-a1da-4eff-a1cd-701c1e570b90" name="Changes" comment=" mis a jour du sql">
+    <list default="true" id="d446f177-a1da-4eff-a1cd-701c1e570b90" name="Changes" comment="ajout de l'edit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ecosphere/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecosphere/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ecosphere/templates/Evaluation/add_evaluation.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecosphere/templates/Evaluation/add_evaluation.html" afterDir="false" />
@@ -65,7 +65,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1732194314608</updated>
-      <workItem from="1732194315756" duration="9933000" />
+      <workItem from="1732194315756" duration="11180000" />
     </task>
     <task id="LOCAL-00001" summary="ajout des dossier individuel pour le crud">
       <option name="closed" value="true" />
@@ -163,7 +163,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732203043875</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="ajout de l'edit">
+      <option name="closed" value="true" />
+      <created>1732204883668</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1732204883668</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,6 +181,7 @@
     <MESSAGE value="ajout des dossier individuel pour le crud" />
     <MESSAGE value="ajout du fichier show de l'évalutation" />
     <MESSAGE value=" mis a jour du sql" />
-    <option name="LAST_COMMIT_MESSAGE" value=" mis a jour du sql" />
+    <MESSAGE value="ajout de l'edit" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajout de l'edit" />
   </component>
 </project>
