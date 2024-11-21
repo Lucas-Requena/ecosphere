@@ -44,4 +44,4 @@ def show_evaluation():
     ORDER BY id_evaluation; '''
     mycursor.execute(sql)
     evaluations = mycursor.fetchall()
-    return render_template('genre_film/show_genre_film.html', evaluation=evaluations)
+    return render_template('Evaluation/show_evaluation.html', evaluation=evaluations)

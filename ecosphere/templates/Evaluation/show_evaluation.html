@@ -16,12 +16,16 @@
         </tr>
     </thead>
     <tbody>
-    {% if genresFilm | length >= 1 %}
-        {% for ligne in genresFilm %}
+    {% if evaluation | length >= 1 %}
+        {% for ligne in evaluation %}
            <tr>
                   <td>{{ ligne.id }}</td>
-                  <td>{{ ligne.libelleGenre }}</td>
-                <td><img style="width:40px;height:40px" src="/static/image/{{ ligne.logo }}" alt="image  de {{ ligne.libelleGenre }}"></td>
+                  <td>{{ ligne.Nom_Animateur }}</td>
+               <td>{{ ligne.DateSeance }}</td>
+               <td>{{ ligne.Nom_Participant }}</td>
+               <td>{{ ligne.Note_Seance }}</td>
+               <td>{{ ligne.Note_Animation }}</td>
+
                   <td>
                       <a href="/genre-film/edit?id={{ ligne.id }}">editer</a>&nbsp;
                       <a href="/genre-film/delete?id={{ ligne.id }}" >supprimer</a>
