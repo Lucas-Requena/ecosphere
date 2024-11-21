@@ -43,5 +43,5 @@ def show_evaluation():
     INNER JOIN Participant ON Evaluation.idParticipant = Participant.idParticipant
     ORDER BY id_evaluation; '''
     mycursor.execute(sql)
-    genre_film = mycursor.fetchall()
-    return render_template('genre_film/show_genre_film.html', genresFilm=genre_film)
+    evaluations = mycursor.fetchall()
+    return render_template('genre_film/show_genre_film.html', evaluation=evaluations)
