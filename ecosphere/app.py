@@ -63,7 +63,10 @@ def delete_evaluation():
 
 @app.route('/animation/add', methods=['GET'])
 def add_evaluation():
-    return render_template('Evaluation/add_evaluation.html')
+    mycursor = get_db().cursor()
+    animateurs='''SELECT * FROM Animateur'''
+
+    return render_template('Evaluation/add_evaluation.html',animateurs=animateurs)
 
 @app.route('/animation/add', methods=['POST'])
 def valid_add_evaluation():
