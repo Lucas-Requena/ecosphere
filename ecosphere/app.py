@@ -45,3 +45,18 @@ def show_evaluation():
     mycursor.execute(sql)
     evaluations = mycursor.fetchall()
     return render_template('Evaluation/show_evaluation.html', evaluation=evaluations)
+
+@app.route('/film/delete', methods=['GET'])
+def delete_evaluation():
+    print('''suppression d'une evaluation''')
+    id = request.args.get('id')
+    print("un genre de film supprimé, id :", id)
+    message = u'un genre de film supprimé, id : ' + id
+    flash(message, 'alert-warning')
+
+    mycursor = get_db().cursor()
+    sql = "DELETE FROM genre_film WHERE id_genre=%s;"
+    tuple_sql = (id)
+    mycursor.execute(sql, tuple_sql)
+    get_db().commit()
+    return redirect('/evaluation/show')
