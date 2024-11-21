@@ -65,6 +65,7 @@ def delete_evaluation():
 def add_evaluation():
     mycursor = get_db().cursor()
     animateurs='''SELECT * FROM Animateur'''
+    mycursor.execute(animateurs)
 
     return render_template('Evaluation/add_evaluation.html',animateurs=animateurs)
 
