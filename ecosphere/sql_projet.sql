@@ -46,21 +46,24 @@ CREATE TABLE Participant(
 );
 
 CREATE TABLE Inscription(
+    id_inscription INT AUTO_INCREMENT,
     idSeance INT,
     idParticipant INT,
     date_insccription DATE,
-    PRIMARY KEY (idSeance, idParticipant),
+    priInscription INT,
+    PRIMARY KEY (id_inscription),
     FOREIGN KEY (idSeance) REFERENCES Seance(id_Seance),
     FOREIGN KEY (idParticipant) REFERENCES Participant(idParticipant)
 );
 
 CREATE TABLE Evaluation(
+    id_evaluation INT AUTO_INCREMENT,
     N_Animateur    INT,
     idSeance       INT,
     idParticipant  INT,
     Note_Seance    INT,
     Note_Animation INT,
-    PRIMARY KEY (N_Animateur, idSeance, idParticipant),
+    PRIMARY KEY (id_evaluation),
     FOREIGN KEY (N_Animateur) REFERENCES Animateur (N_Animateur),
     FOREIGN KEY (idSeance) REFERENCES Seance (id_Seance),
     FOREIGN KEY (idParticipant) REFERENCES Participant (idParticipant)
