@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d446f177-a1da-4eff-a1cd-701c1e570b90" name="Changes" comment=" mis a jour du sql">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ecosphere/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecosphere/app.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -64,7 +63,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1732194314608</updated>
-      <workItem from="1732194315756" duration="5810000" />
+      <workItem from="1732194315756" duration="6126000" />
     </task>
     <task id="LOCAL-00001" summary="ajout des dossier individuel pour le crud">
       <option name="closed" value="true" />
@@ -130,7 +129,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732199810831</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary=" mis a jour du sql">
+      <option name="closed" value="true" />
+      <created>1732200216324</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1732200216324</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

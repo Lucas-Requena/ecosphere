@@ -28,14 +28,14 @@
 
                   <td>
                       <a href="/genre-film/edit?id={{ ligne.id }}">editer</a>&nbsp;
-                      <a href="/genre-film/delete?id={{ ligne.id }}" >supprimer</a>
+                      <a href="/animation/delete?id={{ ligne.id }}" >supprimer</a>
                   </td>
            </tr>
         {% endfor %}
     {% else %}
             <tr>
                   <td>
-                      pas de genre de film
+                      pas d'animation
                   </td>
            </tr>
     {% endif %}
