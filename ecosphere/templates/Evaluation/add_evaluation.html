@@ -9,18 +9,25 @@
   <form method="post" action="/animation/add" >
     <fieldset>
         <legend> Créer une evaluation</legend>
-{{ animateurs }}
         <label for="Nom_Animateur">animateur</label><br>
         <select name="Nom_Animateur" id="Nom_Animateur"   required>
             <option value="">selectionner l'animateur</option>
-            {% for type in animateurs %}
+            {% for type in animseaceparticips %}
             <option value="{{ type.N_Animateur }}"> {{ type.Nom_Animateur }} </option>
             {% endfor %}
         </select><br>
         <label for="DateSeance">date</label><br>
-        <input id="DateSeance" type="date" name="DateSeance" size="18" value="" placeholder="Saisir la date de la seance" required><br>
+        <select name="DateSeance" id="DateSeance"   required>
+            <option value="">selectionner la date</option>
+            {% for type in animseaceparticips %}
+            <option value="{{ type.id_Seance }}"> {{ type.DateSeance }} </option>
+            {% endfor %}
         <label for="Nom_Participant">participant</label><br>
-        <input id="Nom_Participant" type="text" name="Nom_Participant" size="18" value="" placeholder="Saisir le nom du participant" required><br>
+        <select name="Nom_Participant" id="Nom_Participant"   required>
+            <option value="">selectionner le nom du participant</option>
+            {% for type in animseaceparticips %}
+            <option value="{{ type.idParticipant }}"> {{ type.Nom_Participant }} </option>
+            {% endfor %}
         <label for="Note_Seance">note seance</label><br>
         <input id="Note_Seance" type="text" name="Note_Seance" size="18" value="" placeholder="Saisir la note de la seance" required><br>
         <label for="Note_Animation">note animation</label><br>

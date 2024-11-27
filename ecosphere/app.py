@@ -64,11 +64,14 @@ def delete_evaluation():
 @app.route('/animation/add', methods=['GET'])
 def add_evaluation():
     mycursor = get_db().cursor()
-    sql='''SELECT * FROM Animateur'''
+    sql='''SELECT * FROM Evaluation
+    INNER JOIN Animateur ON Evaluation.N_Animateur = Animateur.N_Animateur
+    INNER JOIN Seance ON Evaluation.idSeance = Seance.id_Seance
+    INNER JOIN Participant ON Evaluation.idParticipant = Participant.idParticipant'''
     mycursor.execute(sql)
-    animateurs = mycursor.fetchall()
+    animseaceparticip = mycursor.fetchall()
 
-    return render_template('Evaluation/add_evaluation.html',animateurs=animateurs)
+    return render_template('Evaluation/add_evaluation.html',animseaceparticips=animseaceparticip)
 
 @app.route('/animation/add', methods=['POST'])
 def valid_add_evaluation():
