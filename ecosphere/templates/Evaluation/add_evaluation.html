@@ -22,12 +22,14 @@
             {% for type in animseaceparticips %}
             <option value="{{ type.id_Seance }}"> {{ type.DateSeance }} </option>
             {% endfor %}
+            </select><br>
         <label for="Nom_Participant">participant</label><br>
         <select name="Nom_Participant" id="Nom_Participant"   required>
             <option value="">selectionner le nom du participant</option>
             {% for type in animseaceparticips %}
             <option value="{{ type.idParticipant }}"> {{ type.Nom_Participant }} </option>
             {% endfor %}
+            </select><br>
         <label for="Note_Seance">note seance</label><br>
         <input id="Note_Seance" type="text" name="Note_Seance" size="18" value="" placeholder="Saisir la note de la seance" required><br>
         <label for="Note_Animation">note animation</label><br>
