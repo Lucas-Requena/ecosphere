@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d446f177-a1da-4eff-a1cd-701c1e570b90" name="Changes" comment="ajout de l'edit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecosphere/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecosphere/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecosphere/templates/Evaluation/add_evaluation.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecosphere/templates/Evaluation/add_evaluation.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +63,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1732194314608</updated>
-      <workItem from="1732194315756" duration="11180000" />
+      <workItem from="1732194315756" duration="11523000" />
     </task>
     <task id="LOCAL-00001" summary="ajout des dossier individuel pour le crud">
       <option name="closed" value="true" />
@@ -171,7 +169,31 @@
       <option name="project" value="LOCAL" />
       <updated>1732204883668</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="ajout de l'edit">
+      <option name="closed" value="true" />
+      <created>1732205909846</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1732205909846</updated>
+    </task>
+    <task id="LOCAL-00015" summary="ajout de l'edit">
+      <option name="closed" value="true" />
+      <created>1732206152032</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1732206152032</updated>
+    </task>
+    <task id="LOCAL-00016" summary="ajout de l'edit">
+      <option name="closed" value="true" />
+      <created>1732206179098</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1732206179098</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
