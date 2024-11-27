@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d446f177-a1da-4eff-a1cd-701c1e570b90" name="Changes" comment="maj de bande déroulante">
+    <list default="true" id="d446f177-a1da-4eff-a1cd-701c1e570b90" name="Changes" comment="maj du add">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ecosphere/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecosphere/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecosphere/templates/Evaluation/add_evaluation.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecosphere/templates/Evaluation/add_evaluation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecosphere/sql_projet.sql" beforeDir="false" afterPath="$PROJECT_DIR$/ecosphere/sql_projet.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +63,7 @@
       <option name="presentableId" value="Default" />
       <updated>1732194314608</updated>
       <workItem from="1732194315756" duration="11523000" />
-      <workItem from="1732694790046" duration="1793000" />
+      <workItem from="1732694790046" duration="2908000" />
     </task>
     <task id="LOCAL-00001" summary="ajout des dossier individuel pour le crud">
       <option name="closed" value="true" />
@@ -217,7 +217,23 @@
       <option name="project" value="LOCAL" />
       <updated>1732695185075</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="maj du add">
+      <option name="closed" value="true" />
+      <created>1732696706313</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1732696706314</updated>
+    </task>
+    <task id="LOCAL-00021" summary="maj du add">
+      <option name="closed" value="true" />
+      <created>1732696984764</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1732696984765</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,6 +246,7 @@
     <MESSAGE value="ajout de l'edit" />
     <MESSAGE value="maj du nav" />
     <MESSAGE value="maj de bande déroulante" />
-    <option name="LAST_COMMIT_MESSAGE" value="maj de bande déroulante" />
+    <MESSAGE value="maj du add" />
+    <option name="LAST_COMMIT_MESSAGE" value="maj du add" />
   </component>
 </project>
