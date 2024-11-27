@@ -77,7 +77,13 @@ LEFT JOIN Evaluation ON Evaluation.N_Animateur = Animateur.N_Animateur;
     mycursor.execute(sql)
     seance = mycursor.fetchall()
 
-    return render_template('Evaluation/add_evaluation.html',animateurs=animateur)
+    sql = '''SELECT DISTINCT Participant.idParticipant, Participant.Nom_Participant
+        FROM Participant
+        LEFT JOIN Evaluation ON Participant.idParticipant = Evaluation.idParticipant'''
+    mycursor.execute(sql)
+    participant = mycursor.fetchall()
+
+    return render_template('Evaluation/add_evaluation.html',animateurs=animateur,seances=seance,participants=participant)
 
 @app.route('/animation/add', methods=['POST'])
 def valid_add_evaluation():
