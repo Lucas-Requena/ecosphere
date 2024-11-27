@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d446f177-a1da-4eff-a1cd-701c1e570b90" name="Changes" comment="maj du add" />
+    <list default="true" id="d446f177-a1da-4eff-a1cd-701c1e570b90" name="Changes" comment="fin du add" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -59,7 +59,7 @@
       <option name="presentableId" value="Default" />
       <updated>1732194314608</updated>
       <workItem from="1732194315756" duration="11523000" />
-      <workItem from="1732694790046" duration="4119000" />
+      <workItem from="1732694790046" duration="4472000" />
     </task>
     <task id="LOCAL-00001" summary="ajout des dossier individuel pour le crud">
       <option name="closed" value="true" />
@@ -245,7 +245,31 @@
       <option name="project" value="LOCAL" />
       <updated>1732698909174</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="maj du add">
+      <option name="closed" value="true" />
+      <created>1732698919327</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1732698919327</updated>
+    </task>
+    <task id="LOCAL-00025" summary="maj du add">
+      <option name="closed" value="true" />
+      <created>1732699070038</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1732699070038</updated>
+    </task>
+    <task id="LOCAL-00026" summary="fin du add">
+      <option name="closed" value="true" />
+      <created>1732699129863</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1732699129863</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -259,6 +283,7 @@
     <MESSAGE value="maj du nav" />
     <MESSAGE value="maj de bande déroulante" />
     <MESSAGE value="maj du add" />
-    <option name="LAST_COMMIT_MESSAGE" value="maj du add" />
+    <MESSAGE value="fin du add" />
+    <option name="LAST_COMMIT_MESSAGE" value="fin du add" />
   </component>
 </project>
