@@ -26,7 +26,7 @@
         <label for="Nom_Participant">participant</label><br>
         <select name="Nom_Participant" id="Nom_Participant"   required>
             <option value="">selectionner le nom du participant</option>
-            {% for type in animseaceparticips %}
+            {% for type in participants %}
             <option value="{{ type.idParticipant }}"> {{ type.Nom_Participant }} </option>
             {% endfor %}
             </select><br>
