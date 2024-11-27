@@ -130,7 +130,4 @@ LEFT JOIN Inscription ON Seance.id_Seance = Inscription.idSeance
 GROUP BY Seance.id_Seance
 ;
 
-SELECT * FROM Evaluation
-    RIGHT JOIN Animateur ON Evaluation.N_Animateur = Animateur.N_Animateur
-    RIGHT JOIN Seance ON Evaluation.idSeance = Seance.id_Seance
-    LEFT JOIN Atelier A on Animateur.N_Animateur = A.N_Animateur JOIN Participant ON Evaluation.idParticipant = Participant.idParticipant
+

@@ -12,7 +12,7 @@
         <label for="Nom_Animateur">animateur</label><br>
         <select name="Nom_Animateur" id="Nom_Animateur"   required>
             <option value="">selectionner l'animateur</option>
-            {% for type in animseaceparticips %}
+            {% for type in animateurs %}
             <option value="{{ type.N_Animateur }}"> {{ type.Nom_Animateur }} </option>
             {% endfor %}
         </select><br>
