@@ -101,3 +101,52 @@ def valid_add_evaluation():
     message = u'evaluation ajouté , animateur :'+Nom_Animateur,"date :"+DateSeance,"participant :"+Nom_Participant,"note de seance :"+Note_Seance,"note d'animation"+Note_Animation
     flash(message, 'alert-success')
     return redirect('/evaluation/show')
+
+@app.route('/seance/show', methods=['GET'])
+def show_seance():
+    mycursor = get_db().cursor()
+    sql = '''SELECT id_Seance AS id,Seance.DateSeance,Seance.PlacesDisponibles,Seance.IDlieu,Seance.id_atelier
+    FROM Seance'''
+    mycursor.execute(sql)
+    seances = mycursor.fetchall()
+    return render_template('Seance/show_seance.html', seance=seances)
+
+@app.route('/seance/add', methods=['GET'])
+def add_seance():
+    mycursor = get_db().cursor()
+    sql='''SELECT * FROM Seance'''
+    mycursor.execute(sql)
+    seances = mycursor.fetchall()
+
+    return render_template('Seance/add_seance.html',seance=seances)
+
+@app.route('/seance/add', methods=['POST'])
+def valid_add_seance():
+    DateSeance = request.form.get('DateSeance', '')
+    PlacesDisponibles = request.form.get('PlacesDisponibles', '')
+    IDlieu = request.form.get('IDlieu', '')
+    id_atelier = request.form.get('id_atelier', '')
+    mycursor = get_db().cursor()
+    sql = ''' INSERT INTO Seance(id_Seance,DateSeance,PlacesDisponibles,IDlieu,id_atelier) VALUES (NULL, %s, %s, %s, %s);'''
+    tuple_sql = (DateSeance,PlacesDisponibles,IDlieu,id_atelier)
+    mycursor.execute(sql, tuple_sql)
+
+    get_db().commit()
+    message = u'"Séance ajoutée ,'"date :"+DateSeance,"nombre de places disponibles :"+PlacesDisponibles,"ID du lieu :"+IDlieu,"ID de l'atelier"+id_atelier
+    flash(message, 'alert-success')
+    return redirect('/seance/show')
+
+@app.route('/seance/delete', methods=['GET'])
+def delete_seance():
+    print('''suppression d'une seance''')
+    id = request.args.get('id')
+    print("une séance supprimée, id :", id)
+    message = u'une séance supprimée, id : ' + id
+    flash(message, 'alert-warning')
+
+    mycursor = get_db().cursor()
+    sql = "DELETE FROM Seance WHERE id_seance=%s;"
+    tuple_sql = (id)
+    mycursor.execute(sql, tuple_sql)
+    get_db().commit()
+    return redirect('/seance/show')
