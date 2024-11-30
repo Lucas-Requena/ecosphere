@@ -87,7 +87,7 @@ LEFT JOIN Evaluation ON Evaluation.N_Animateur = Animateur.N_Animateur;
 
     return render_template('Evaluation/add_evaluation.html',animateurs=animateur,seances=seance,participants=participant)
 
-@app.route('/animation/add', methods=['POST'])
+@app.route('/evaluation/add', methods=['POST'])
 def valid_add_evaluation():
     Nom_Animateur = request.form.get('Nom_Animateur', '')
     DateSeance = request.form.get('DateSeance', '')
@@ -104,7 +104,7 @@ def valid_add_evaluation():
     flash(message, 'alert-success')
     return redirect('/evaluation/show')
 
-@app.route('/animation/edit', methods=['GET'])
+@app.route('/evaluation/edit', methods=['GET'])
 def edit_evaluation():
     id = request.args.get('id')
     mycursor = get_db().cursor()
@@ -128,15 +128,15 @@ def edit_evaluation():
     return render_template('Evaluation/edit_evaluation.html',evaluation=evaluation,animateurs=animateurs,seances=seances,participants=participants)
 
 
-@app.route('/animation/edit', methods=['POST'])
+@app.route('/evaluation/edit', methods=['POST'])
 def valid_edit_evaluation():
-
     Nom_Animateur = request.form.get('Nom_Animateur', '')
     DateSeance = request.form.get('DateSeance', '')
     Nom_Participant = request.form.get('Nom_Participant', '')
     Note_Seance = request.form.get('Note_Seance', '')
     Note_Animation = request.form.get('Note_Animation', '')
     id_evaluation = request.form.get('id_evaluation', '')
+
     mycursor = get_db().cursor()
     sql = '''UPDATE Evaluation 
     SET N_Animateur = %s, idSeance = %s, idParticipant = %s, 

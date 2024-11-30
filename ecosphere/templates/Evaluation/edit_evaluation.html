@@ -6,7 +6,7 @@
 
 {% block body %}
   <h2>modifier une evaluation</h2>
-  <form method="post" action="/animation/edit" >
+  <form method="post" action="/evaluation/edit" >
     <fieldset>
         <legend> modifier une evaluation</legend>
         <input type="hidden" name="id_evaluation" value="{{ evaluation.id_evaluation }}">
@@ -36,7 +36,7 @@
         <label for="Note_Animation">note animation</label><br>
         <input id="Note_Animation" type="number" name="Note_Animation" size="18" value="{{ evaluation.Note_Animation }}" placeholder="Saisir la note de l'animation" required><br>
 
-        <input type="submit" value="Creer" name="Valider" >
+        <input type="submit" value="Modifier" name="Valider" >
     </fieldset>
   </form>
 {% endblock %}
