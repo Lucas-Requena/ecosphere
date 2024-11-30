@@ -145,9 +145,10 @@ def valid_edit_evaluation():
     tuple_sql = (Nom_Animateur, DateSeance, Nom_Participant, Note_Seance, Note_Animation, id_evaluation)
     mycursor.execute(sql, tuple_sql)
     get_db().commit()
-    message = u'evaluation modifié , animateur :' + Nom_Animateur, "date :" + DateSeance, "participant :" + Nom_Participant, "note de seance :" + Note_Seance, "note d'animation" + Note_Animation
+    message = u'evaluation ajouté , animateur :'+Nom_Animateur,"date :"+DateSeance,"participant :"+Nom_Participant,"note de seance :"+Note_Seance,"note d'animation"+Note_Animation
     flash(message, 'alert-success')
     return redirect('/evaluation/show')
+
 
 
 ###Seance###
