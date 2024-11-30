@@ -6,24 +6,47 @@
 
 {% block body %}
   <h2>Ajout d'une séance</h2>
-  <form method="post" action="/seance/add" >
+ <form method="post" action="/seance/add">
     <fieldset>
-        <legend> Créer une seance</legend>
-{{ animateurs }}
+        <legend>Créer une séance</legend>
 
-        <label for="DateSeance">date</label><br>
-        <input id="DateSeance" type="date" name="DateSeance" size="18" value="" placeholder="Saisir la date de la seance" required><br>
-        <br>
+        <label for="DateSeance">Date</label><br>
+        <select id="DateSeance" name="DateSeance" required>
+            <option value="">Sélectionner la date</option>
+            {% for type in seance %}
+            <option value="{{ type.id_Seance }}">{{ type.DateSeance }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
         <label for="PlacesDisponibles">Nombre de Places Disponibles</label><br>
-        <input id="PlacesDisponibles" type="number" name="PlacesDisponibles" size="18" value="" placeholder="Saisir le nombre de places disponibles" required><br>
+        <input id="PlacesDisponibles" type="number" name="PlacesDisponibles" size="18"
+               placeholder="Saisir le nombre de places disponibles" required>
+        <br><br>
+
+
+        <label for="IDlieu">Lieu de la séance</label><br>
+        <select id="IDlieu" name="id_lieu" required>
+            <option value="">Sélectionner le lieu</option>
+            {% for lieu_item in lieu %}
+            <option value="{{ lieu_item.IDlieu }}">{{ lieu_item.NomLieu }}</option>
+            {% endfor %}
+        </select>
         <br>
-        <label for="IDlieu"> seance</label><br>
-        <input id="Note_Seance" type="text" name="Note_Seance" size="18" value="" placeholder="Saisir la note de la seance" required><br>
         <br>
-        <label for="Note_Animation">note animation</label><br>
-        <input id="Note_Animation" type="text" name="Note_Animation" size="18" value="" placeholder="Saisir la note de l'animation" required><br>
+
+        <label for="IDatelier">Atelier de la séance</label><br>
+        <select id="IDatelier" name="id_atelier" required>
+            <option value="">Sélectionner l'atelier</option>
+            {% for atelier in ateliers %}
+                <option value="{{ atelier.id_atelier }}">{{ atelier.Nom_Atelier }}</option>
+            {% endfor %}
+        </select>
         <br>
-        <input type="submit" value="Creer" name="Valider" >
+        <br>
+
+        <input type="submit" value="Créer" name="Valider">
     </fieldset>
-  </form>
+</form>
+
 {% endblock %}
