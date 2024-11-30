@@ -104,6 +104,14 @@ def valid_add_evaluation():
     flash(message, 'alert-success')
     return redirect('/evaluation/show')
 
+@app.route('/animation/edit', methods=['GET'])
+def edit_evaluation():
+    pass
+
+@app.route('/animation/edit', methods=['POST'])
+def valid_edit_evaluation():
+    pass
+
 ###Seance###
 
 @app.route('/seance/show', methods=['GET'])
