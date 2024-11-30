@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d446f177-a1da-4eff-a1cd-701c1e570b90" name="Changes" comment="creation du lancher window">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecosphere/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecosphere/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecosphere/lancher.bat" beforeDir="false" afterPath="$PROJECT_DIR$/ecosphere/lancher.bat" afterDir="false" />
-    </list>
+    <list default="true" id="d446f177-a1da-4eff-a1cd-701c1e570b90" name="Changes" comment="changement temporaire pour lancer en dehors du lycée plus separation des différente fonction des table" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -68,7 +64,7 @@
       <workItem from="1732694790046" duration="4472000" />
       <workItem from="1732892324513" duration="3091000" />
       <workItem from="1732902398140" duration="1999000" />
-      <workItem from="1732964325490" duration="1295000" />
+      <workItem from="1732964325490" duration="2185000" />
     </task>
     <task id="LOCAL-00001" summary="ajout des dossier individuel pour le crud">
       <option name="closed" value="true" />
@@ -302,7 +298,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732923468756</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="changement temporaire pour lancer en dehors du lycée plus separation des différente fonction des table">
+      <option name="closed" value="true" />
+      <created>1732965930915</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1732965930915</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -318,6 +322,7 @@
     <MESSAGE value="maj du add" />
     <MESSAGE value="fin du add" />
     <MESSAGE value="creation du lancher window" />
-    <option name="LAST_COMMIT_MESSAGE" value="creation du lancher window" />
+    <MESSAGE value="changement temporaire pour lancer en dehors du lycée plus separation des différente fonction des table" />
+    <option name="LAST_COMMIT_MESSAGE" value="changement temporaire pour lancer en dehors du lycée plus separation des différente fonction des table" />
   </component>
 </project>
