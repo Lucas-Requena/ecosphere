@@ -13,7 +13,7 @@ import pymysql.cursors
 def get_db():
     if 'db' not in g:
         g.db =  pymysql.connect(
-            host="serveurmysql",                 # à modifier
+            host="localhost",                 # à modifier
             user="lrequena",                     # à modifier
             password="mdp",                # à modifier
             database="BDD_lrequena",        # à modifier
@@ -32,6 +32,8 @@ def teardown_db(exception):
 def show_layout():
     return render_template('layout.html',methods=['GET'])
 
+
+###evaluation###
 @app.route('/evaluation/show', methods=['GET'])
 def show_evaluation():
     #print(types_articles)
@@ -101,6 +103,8 @@ def valid_add_evaluation():
     message = u'evaluation ajouté , animateur :'+Nom_Animateur,"date :"+DateSeance,"participant :"+Nom_Participant,"note de seance :"+Note_Seance,"note d'animation"+Note_Animation
     flash(message, 'alert-success')
     return redirect('/evaluation/show')
+
+###Seance###
 
 @app.route('/seance/show', methods=['GET'])
 def show_seance():
