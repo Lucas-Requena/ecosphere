@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d446f177-a1da-4eff-a1cd-701c1e570b90" name="Changes" comment="changement temporaire pour lancer en dehors du lycée plus separation des différente fonction des table" />
+    <list default="true" id="d446f177-a1da-4eff-a1cd-701c1e570b90" name="Changes" comment="mis seance dans template">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecosphere/templates/Evaluation/add_evaluation.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecosphere/templates/Evaluation/add_evaluation.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,6 +47,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\lrequ\PycharmProjects\ecosphere\ecosphere\templates" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -64,7 +72,7 @@
       <workItem from="1732694790046" duration="4472000" />
       <workItem from="1732892324513" duration="3091000" />
       <workItem from="1732902398140" duration="1999000" />
-      <workItem from="1732964325490" duration="2185000" />
+      <workItem from="1732964325490" duration="3504000" />
     </task>
     <task id="LOCAL-00001" summary="ajout des dossier individuel pour le crud">
       <option name="closed" value="true" />
@@ -306,7 +314,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732965930915</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="mis seance dans template">
+      <option name="closed" value="true" />
+      <created>1732970855210</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1732970855210</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -323,6 +339,7 @@
     <MESSAGE value="fin du add" />
     <MESSAGE value="creation du lancher window" />
     <MESSAGE value="changement temporaire pour lancer en dehors du lycée plus separation des différente fonction des table" />
-    <option name="LAST_COMMIT_MESSAGE" value="changement temporaire pour lancer en dehors du lycée plus separation des différente fonction des table" />
+    <MESSAGE value="mis seance dans template" />
+    <option name="LAST_COMMIT_MESSAGE" value="mis seance dans template" />
   </component>
 </project>
