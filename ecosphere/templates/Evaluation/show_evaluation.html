@@ -6,7 +6,7 @@
 
 {% block body %}
 <h3>Evaluation</h3>
-<a href="/animation/add">ajouter une evaluation</a>
+<a href="/evaluation/add">ajouter une evaluation</a>
 <br><br>
 
 <table class="table">
@@ -27,15 +27,15 @@
                <td>{{ ligne.Note_Animation }}</td>
 
                   <td>
-                      <a href="/animation/edit?id={{ ligne.id }}">editer</a>&nbsp;
-                      <a href="/animation/delete?id={{ ligne.id }}" >supprimer</a>
+                      <a href="/evaluation/edit?id={{ ligne.id }}">editer</a>&nbsp;
+                      <a href="/evaluation/delete?id={{ ligne.id }}" >supprimer</a>
                   </td>
            </tr>
         {% endfor %}
     {% else %}
             <tr>
                   <td>
-                      pas d'animation
+                      pas d'evaluation
                   </td>
            </tr>
     {% endif %}
