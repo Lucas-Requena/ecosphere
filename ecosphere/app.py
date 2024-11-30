@@ -113,7 +113,6 @@ def valid_edit_evaluation():
     pass
 
 ###Seance###
-
 @app.route('/seance/show', methods=['GET'])
 def show_seance():
     mycursor = get_db().cursor()
@@ -130,21 +129,37 @@ def add_seance():
     mycursor.execute(sql)
     seances = mycursor.fetchall()
 
-    return render_template('Seance/add_seance.html',seance=seances)
+    sql='''SELECT DISTINCT Seance.id_Seance, Seance.DateSeance
+    FROM Seance
+    LEFT JOIN Evaluation ON Seance.id_Seance = Seance.id_Seance'''
+    mycursor.execute(sql)
+    seances = mycursor.fetchall()
+
+    sql = '''SELECT IDlieu, NomLieu FROM Lieu'''
+    mycursor.execute(sql)
+    lieux = mycursor.fetchall()
+
+    sql = '''SELECT id_atelier, Nom_Atelier FROM Atelier'''
+    mycursor.execute(sql)
+    ateliers = mycursor.fetchall()
+
+    return render_template('Seance/add_seance.html', seance=seances, lieu=lieux, ateliers=ateliers)
+
+
 
 @app.route('/seance/add', methods=['POST'])
 def valid_add_seance():
     DateSeance = request.form.get('DateSeance', '')
     PlacesDisponibles = request.form.get('PlacesDisponibles', '')
-    IDlieu = request.form.get('IDlieu', '')
-    id_atelier = request.form.get('id_atelier', '')
+    IDlieu = request.form.get('id_lieu', '1')
+    IDatelier = request.form.get('id_atelier', '1')
     mycursor = get_db().cursor()
     sql = ''' INSERT INTO Seance(id_Seance,DateSeance,PlacesDisponibles,IDlieu,id_atelier) VALUES (NULL, %s, %s, %s, %s);'''
-    tuple_sql = (DateSeance,PlacesDisponibles,IDlieu,id_atelier)
+    tuple_sql = (DateSeance,PlacesDisponibles,IDlieu,IDatelier)
     mycursor.execute(sql, tuple_sql)
 
     get_db().commit()
-    message = u'"Séance ajoutée ,'"date :"+DateSeance,"nombre de places disponibles :"+PlacesDisponibles,"ID du lieu :"+IDlieu,"ID de l'atelier"+id_atelier
+    message = u'"Séance ajoutée ,'"date :"+DateSeance,"nombre de places disponibles :"+PlacesDisponibles,"ID du lieu :"+IDlieu,"ID de l'atelier"+IDatelier
     flash(message, 'alert-success')
     return redirect('/seance/show')
 
