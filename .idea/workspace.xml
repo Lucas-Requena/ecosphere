@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d446f177-a1da-4eff-a1cd-701c1e570b90" name="Changes" comment="debut des edit" />
+    <list default="true" id="d446f177-a1da-4eff-a1cd-701c1e570b90" name="Changes" comment="debut des edit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecosphere/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecosphere/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecosphere/templates/Evaluation/edit_evaluation.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecosphere/templates/Evaluation/edit_evaluation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecosphere/templates/Evaluation/show_evaluation.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecosphere/templates/Evaluation/show_evaluation.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -69,7 +74,8 @@
       <workItem from="1732694790046" duration="4472000" />
       <workItem from="1732892324513" duration="3091000" />
       <workItem from="1732902398140" duration="1999000" />
-      <workItem from="1732964325490" duration="5190000" />
+      <workItem from="1732964325490" duration="6791000" />
+      <workItem from="1732989662965" duration="2250000" />
     </task>
     <task id="LOCAL-00001" summary="ajout des dossier individuel pour le crud">
       <option name="closed" value="true" />
@@ -343,7 +349,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732974193007</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="debut des edit">
+      <option name="closed" value="true" />
+      <created>1732977352683</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1732977352683</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

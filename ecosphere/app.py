@@ -48,7 +48,7 @@ def show_evaluation():
     evaluations = mycursor.fetchall()
     return render_template('Evaluation/show_evaluation.html', evaluation=evaluations)
 
-@app.route('/animation/delete', methods=['GET'])
+@app.route('/evaluation/delete', methods=['GET'])
 def delete_evaluation():
     print('''suppression d'une evaluation''')
     id = request.args.get('id')
@@ -63,7 +63,7 @@ def delete_evaluation():
     get_db().commit()
     return redirect('/evaluation/show')
 
-@app.route('/animation/add', methods=['GET'])
+@app.route('/evaluation/add', methods=['GET'])
 def add_evaluation():
     mycursor = get_db().cursor()
     sql='''SELECT DISTINCT Animateur.N_Animateur, Animateur.Nom_Animateur
@@ -106,11 +106,47 @@ def valid_add_evaluation():
 
 @app.route('/animation/edit', methods=['GET'])
 def edit_evaluation():
-    pass
+    id = request.args.get('id')
+    mycursor = get_db().cursor()
+    sql = '''SELECT id_evaluation, N_Animateur, idSeance, idParticipant, Note_Seance, Note_Animation 
+    FROM Evaluation 
+    WHERE id_evaluation = %s'''
+    mycursor.execute(sql, (id))
+    evaluation = mycursor.fetchone()
+    sql = '''SELECT DISTINCT N_Animateur, Nom_Animateur 
+    FROM Animateur'''
+    mycursor.execute(sql)
+    animateurs = mycursor.fetchall()
+    sql = '''SELECT DISTINCT id_Seance, DateSeance 
+    FROM Seance'''
+    mycursor.execute(sql)
+    seances = mycursor.fetchall()
+    sql = '''SELECT DISTINCT idParticipant, Nom_Participant 
+    FROM Participant'''
+    mycursor.execute(sql)
+    participants = mycursor.fetchall()
+    return render_template('Evaluation/edit_evaluation.html',evaluation=evaluation,animateurs=animateurs,seances=seances,participants=participants)
+
 
 @app.route('/animation/edit', methods=['POST'])
 def valid_edit_evaluation():
-    pass
+
+    Nom_Animateur = request.form.get('Nom_Animateur', '')
+    DateSeance = request.form.get('DateSeance', '')
+    Nom_Participant = request.form.get('Nom_Participant', '')
+    Note_Seance = request.form.get('Note_Seance', '')
+    Note_Animation = request.form.get('Note_Animation', '')
+    id_evaluation = request.form.get('id_evaluation', '')
+    mycursor = get_db().cursor()
+    sql = '''UPDATE Evaluation 
+    SET N_Animateur = %s, idSeance = %s, idParticipant = %s, 
+    Note_Seance = %s, Note_Animation = %s
+    WHERE id_evaluation = %s'''
+    tuple_sql = (Nom_Animateur, DateSeance, Nom_Participant, Note_Seance, Note_Animation, id_evaluation)
+    mycursor.execute(sql, tuple_sql)
+    get_db().commit()
+    return redirect('/evaluation/show')
+
 
 ###Seance###
 
