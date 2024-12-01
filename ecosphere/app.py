@@ -191,11 +191,7 @@ def etat_evaluation():
         mycursor.execute(sql)
 
     moyenne_note_animateur = {
-        ligne['Nom_Animateur']: {
-            'Note_Seance': ligne['MoyenneNoteSeance'],
-            'Note_Animation': ligne['MoyenneNoteAnimation']
-        }
-        for ligne in mycursor.fetchall()}
+        ligne['Nom_Animateur']: {'Note_Seance': ligne['MoyenneNoteSeance'],'Note_Animation': ligne['MoyenneNoteAnimation']}for ligne in mycursor.fetchall()}
 
     if participants_filtre:
         sql_participants = '''SELECT Participant.Nom_Participant, AVG(Note_Seance) AS MoyenneNoteSeance,AVG(Note_Animation) AS MoyenneNoteAnimation
