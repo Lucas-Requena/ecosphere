@@ -242,6 +242,55 @@ def valid_add_seance():
     flash(message, 'alert-success')
     return redirect('/seance/show')
 
+@app.route('/seance/edit', methods=['GET'])
+def edit_seance():
+    id_seance = int(request.args.get('id'))
+    if not id_seance:
+        abort(404, description="Séance introuvable")
+
+    mycursor = get_db().cursor()
+
+    sql_seance = "SELECT * FROM Seance WHERE id_Seance = %s"
+    mycursor.execute(sql_seance, (id_seance,))
+    seance = mycursor.fetchone()
+
+    sql_lieux = "SELECT IDlieu, NomLieu FROM Lieu"
+    mycursor.execute(sql_lieux)
+    lieux = mycursor.fetchall()
+
+    sql_ateliers = "SELECT id_atelier, Nom_Atelier FROM Atelier"
+    mycursor.execute(sql_ateliers)
+    ateliers = mycursor.fetchall()
+
+    return render_template('Seance/edit_seance.html', seance=seance, lieux=lieux, ateliers=ateliers)
+
+@app.route('/seance/edit', methods=['POST'])
+def valid_edit_seance():
+    id_seance = int(request.form.get('id_seance', ''))
+    DateSeance = request.form.get('DateSeance', '')
+    PlacesDisponibles = request.form.get('PlacesDisponibles', '')
+    IDlieu = int(request.form.get('id_lieu', ''))
+    IDatelier = int(request.form.get('id_atelier', ''))
+
+    mycursor = get_db().cursor()
+    sql = '''
+        UPDATE Seance
+        SET DateSeance = %s, PlacesDisponibles = %s, IDlieu = %s, id_atelier = %s
+        WHERE id_Seance = %s
+    '''
+    tuple_sql = (DateSeance, PlacesDisponibles, IDlieu, IDatelier, id_seance)
+    mycursor.execute(sql, tuple_sql)
+    get_db().commit()
+
+    message = (
+        f"\"Séance modifiée : Date = {DateSeance}, "
+        f"Nombre de places disponibles = {PlacesDisponibles}, "
+        f"ID du lieu = {IDlieu}, "
+        f"ID de l'atelier = {IDatelier}\""
+    )
+    flash(message, 'alert-success')
+    return redirect('/seance/show')
+
 @app.route('/seance/delete', methods=['GET'])
 def delete_seance():
     print('''suppression d'une seance''')
@@ -256,6 +305,7 @@ def delete_seance():
     mycursor.execute(sql, tuple_sql)
     get_db().commit()
     return redirect('/seance/show')
+
 
 
 
