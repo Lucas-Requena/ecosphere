@@ -149,6 +149,37 @@ def valid_edit_evaluation():
     flash(message, 'alert-success')
     return redirect('/evaluation/show')
 
+@app.route('/evaluation/etat', methods=['GET'])
+def show_evaluation_state():
+    date_filter = request.args.get('date')
+    animateur_filter = request.args.get('animateur')
+    mycursor = get_db().cursor()
+    sql = '''SELECT AVG(Note_Seance) AS moyenne
+    FROM Evaluation
+    INNER JOIN Seance ON Evaluation.idSeance = Seance.id_Seance
+    WHERE Seance.DateSeance = %s'''
+    mycursor.execute(sql, (date_filter,))
+    moyenne_note_seance = mycursor.fetchone()['moyenne']
+    sql = '''SELECT Animateur.Nom_Animateur, 
+    AVG(Note_Seance) AS MoyenneNoteSeance, 
+    AVG(Note_Animation) AS MoyenneNoteAnimation
+    FROM Evaluation
+    INNER JOIN Animateur ON Evaluation.N_Animateur = Animateur.N_Animateur
+    GROUP BY Animateur.Nom_Animateur'''
+    mycursor.execute(sql)
+    moyenne_note_animateur = {
+        row['Nom_Animateur']: {
+            'Note_Seance': row['MoyenneNoteSeance'],
+            'Note_Animation': row['MoyenneNoteAnimation']
+        }
+        for row in mycursor.fetchall()
+    }
+    sql = 'SELECT N_Animateur, Nom_Animateur FROM Animateur'
+    mycursor.execute(sql)
+    animateurs = mycursor.fetchall()
+
+    return render_template('etat_evaluation.html',moyenne_note_seance=moyenne_note_seance,moyenne_note_animateur=moyenne_note_animateur,animateurs=animateurs,selected_date=date_filter
+    )
 
 
 ###Seance###
