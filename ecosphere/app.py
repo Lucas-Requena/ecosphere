@@ -153,10 +153,13 @@ def valid_edit_evaluation():
 def etat_evaluation():
     date_filtre = request.args.get('date')
     animateur_filtre = request.args.get('animateur')
+    participants_filtre = request.args.getlist('participant')
     mycursor = get_db().cursor()
+
     sql_dates = '''SELECT DISTINCT DateSeance FROM Seance ORDER BY DateSeance'''
     mycursor.execute(sql_dates)
     dates = mycursor.fetchall()
+
     if date_filtre:
         sql = '''SELECT AVG(Note_Seance) AS moyenne
                  FROM Evaluation
@@ -170,6 +173,7 @@ def etat_evaluation():
                  INNER JOIN Seance ON Evaluation.idSeance = Seance.id_Seance'''
         mycursor.execute(sql)
         moyenne_note_seance = mycursor.fetchone()['moyenne']
+
     if animateur_filtre:
         sql = '''SELECT Animateur.Nom_Animateur, 
                 AVG(Note_Seance) AS MoyenneNoteSeance, 
@@ -187,16 +191,37 @@ def etat_evaluation():
         mycursor.execute(sql)
 
     moyenne_note_animateur = {
-        row['Nom_Animateur']: {
-            'Note_Seance': row['MoyenneNoteSeance'],
-            'Note_Animation': row['MoyenneNoteAnimation']
+        ligne['Nom_Animateur']: {
+            'Note_Seance': ligne['MoyenneNoteSeance'],
+            'Note_Animation': ligne['MoyenneNoteAnimation']
         }
-        for row in mycursor.fetchall()}
+        for ligne in mycursor.fetchall()}
+
+    if participants_filtre:
+        sql_participants = '''SELECT Participant.Nom_Participant, AVG(Note_Seance) AS MoyenneNoteSeance,AVG(Note_Animation) AS MoyenneNoteAnimation
+                             FROM Evaluation
+                             INNER JOIN Participant ON Evaluation.idParticipant = Participant.idParticipant
+                             WHERE Participant.idParticipant IN (%s)
+                             GROUP BY Participant.Nom_Participant'''
+        format_strings = ','.join(['%s'] * len(participants_filtre))
+        sql_participants = sql_participants % format_strings
+        mycursor.execute(sql_participants, tuple(participants_filtre))
+        moyenne_note_participant = {ligne['Nom_Participant']: {
+                                          'Note_Seance': ligne['MoyenneNoteSeance'],
+                                          'Note_Animation': ligne['MoyenneNoteAnimation']}
+                                    for ligne in mycursor.fetchall()}
+    else:
+        moyenne_note_participant = {}
+
     sql = 'SELECT N_Animateur, Nom_Animateur FROM Animateur'
     mycursor.execute(sql)
     animateurs = mycursor.fetchall()
 
-    return render_template('Evaluation/etat_evaluation.html',moyenne_note_seance=moyenne_note_seance,moyenne_note_animateur=moyenne_note_animateur,animateurs=animateurs, dates=dates, selected_date=date_filtre)
+    sql = 'SELECT idParticipant, Nom_Participant FROM Participant'
+    mycursor.execute(sql)
+    participants = mycursor.fetchall()
+
+    return render_template('Evaluation/etat_evaluation.html',moyenne_note_seance=moyenne_note_seance,moyenne_note_animateur=moyenne_note_animateur,moyenne_note_participant=moyenne_note_participant,animateurs=animateurs,participants=participants,dates=dates, selected_date=date_filtre)
 
 
 
