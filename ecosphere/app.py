@@ -203,8 +203,8 @@ def etat_evaluation():
                              INNER JOIN Participant ON Evaluation.idParticipant = Participant.idParticipant
                              WHERE Participant.idParticipant IN (%s)
                              GROUP BY Participant.Nom_Participant'''
-        format_strings = ','.join(['%s'] * len(participants_filtre))
-        sql_participants = sql_participants % format_strings
+        str = ','.join(['%s'] * len(participants_filtre))
+        sql_participants = sql_participants % str
         mycursor.execute(sql_participants, tuple(participants_filtre))
         moyenne_note_participant = {ligne['Nom_Participant']: {
                                           'Note_Seance': ligne['MoyenneNoteSeance'],
