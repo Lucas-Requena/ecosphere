@@ -13,7 +13,7 @@ import pymysql.cursors
 def get_db():
     if 'db' not in g:
         g.db =  pymysql.connect(
-            host="serveurmysql",                 # à modifier
+            host="localhost",                 # à modifier
             user="lrequena",                     # à modifier
             password="mdp",                # à modifier
             database="BDD_lrequena",        # à modifier
