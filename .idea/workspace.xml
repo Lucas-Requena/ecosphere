@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d446f177-a1da-4eff-a1cd-701c1e570b90" name="Changes" comment="edit mémoire valeur fini" />
+    <list default="true" id="d446f177-a1da-4eff-a1cd-701c1e570b90" name="Changes" comment="debut de correction de la navbar" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -73,7 +73,7 @@
       <workItem from="1732964325490" duration="6791000" />
       <workItem from="1732989662965" duration="4705000" />
       <workItem from="1732994727453" duration="66000" />
-      <workItem from="1733057278518" duration="438000" />
+      <workItem from="1733057278518" duration="4137000" />
     </task>
     <task id="LOCAL-00001" summary="ajout des dossier individuel pour le crud">
       <option name="closed" value="true" />
@@ -435,7 +435,39 @@
       <option name="project" value="LOCAL" />
       <updated>1733057659635</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="edit mémoire valeur fini">
+      <option name="closed" value="true" />
+      <created>1733058033987</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1733058033987</updated>
+    </task>
+    <task id="LOCAL-00047" summary="correction du problème des 2 template">
+      <option name="closed" value="true" />
+      <created>1733058365322</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1733058365322</updated>
+    </task>
+    <task id="LOCAL-00048" summary="debut de correction de la navbar">
+      <option name="closed" value="true" />
+      <created>1733059352616</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1733059352616</updated>
+    </task>
+    <task id="LOCAL-00049" summary="debut de correction de la navbar">
+      <option name="closed" value="true" />
+      <created>1733059836378</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1733059836378</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -455,6 +487,11 @@
     <MESSAGE value="mis seance dans template" />
     <MESSAGE value="debut des edit" />
     <MESSAGE value="edit mémoire valeur fini" />
-    <option name="LAST_COMMIT_MESSAGE" value="edit mémoire valeur fini" />
+    <MESSAGE value="correction du problème des 2 template" />
+    <MESSAGE value="debut de correction de la navbar" />
+    <option name="LAST_COMMIT_MESSAGE" value="debut de correction de la navbar" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ecosphere$app.coverage" NAME="app Coverage Results" MODIFIED="1733057432488" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ecosphere" />
   </component>
 </project>
