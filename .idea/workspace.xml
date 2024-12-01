@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d446f177-a1da-4eff-a1cd-701c1e570b90" name="Changes" comment="changement dans l'etat">
-      <change beforePath="$PROJECT_DIR$/ecosphere/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecosphere/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecosphere/templates/_nav.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecosphere/templates/_nav.html" afterDir="false" />
-    </list>
+    <list default="true" id="d446f177-a1da-4eff-a1cd-701c1e570b90" name="Changes" comment="changement dans l'etat" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,21 +31,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.app.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.app.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\lrequ\PycharmProjects\ecosphere\ecosphere\templates" />
@@ -77,47 +74,7 @@
       <workItem from="1732964325490" duration="6791000" />
       <workItem from="1732989662965" duration="4705000" />
       <workItem from="1732994727453" duration="66000" />
-      <workItem from="1733057278518" duration="9863000" />
-    </task>
-    <task id="LOCAL-00004" summary=" mis a jour du sql">
-      <option name="closed" value="true" />
-      <created>1732197594488</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1732197594488</updated>
-    </task>
-    <task id="LOCAL-00005" summary=" mis a jour du sql">
-      <option name="closed" value="true" />
-      <created>1732199422576</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1732199422576</updated>
-    </task>
-    <task id="LOCAL-00006" summary=" mis a jour du sql">
-      <option name="closed" value="true" />
-      <created>1732199522207</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1732199522207</updated>
-    </task>
-    <task id="LOCAL-00007" summary=" mis a jour du sql">
-      <option name="closed" value="true" />
-      <created>1732199581618</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1732199581618</updated>
-    </task>
-    <task id="LOCAL-00008" summary=" mis a jour du sql">
-      <option name="closed" value="true" />
-      <created>1732199810831</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1732199810831</updated>
+      <workItem from="1733057278518" duration="12607000" />
     </task>
     <task id="LOCAL-00009" summary=" mis a jour du sql">
       <option name="closed" value="true" />
@@ -471,7 +428,47 @@
       <option name="project" value="LOCAL" />
       <updated>1733069992982</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="changement dans l'etat">
+      <option name="closed" value="true" />
+      <created>1733070164251</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1733070164251</updated>
+    </task>
+    <task id="LOCAL-00054" summary="changement dans l'etat">
+      <option name="closed" value="true" />
+      <created>1733070229284</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1733070229284</updated>
+    </task>
+    <task id="LOCAL-00055" summary="changement dans l'etat">
+      <option name="closed" value="true" />
+      <created>1733070240252</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1733070240252</updated>
+    </task>
+    <task id="LOCAL-00056" summary="changement dans l'etat">
+      <option name="closed" value="true" />
+      <created>1733070272994</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1733070272994</updated>
+    </task>
+    <task id="LOCAL-00057" summary="changement dans l'etat">
+      <option name="closed" value="true" />
+      <created>1733072971109</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1733072971109</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
