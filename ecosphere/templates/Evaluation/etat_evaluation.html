@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>État des Évaluations</title>
+</head>
+<body>
+    <div class="container">
+        <h1>État des Évaluations</h1>
+
+        <!-- Formulaire de filtre -->
+        <form method="GET" action="{{ url_for('show_evaluation_state') }}">
+            <div class="form-group">
+                <label for="date">Filtrer par date :</label>
+                <input type="date" id="date" name="date" value="{{ request.args.get('date', '') }}">
+            </div>
+            <div class="form-group">
+                <label for="animateur">Filtrer par animateur :</label>
+                <select id="animateur" name="animateur">
+                    <option value="">Tous les animateurs</option>
+                    {% for animateur in animateurs %}
+                        <option value="{{ animateur['N_Animateur'] }}"
+                                {% if request.args.get('animateur') == animateur['N_Animateur']|string %}selected{% endif %}>
+                            {{ animateur['Nom_Animateur'] }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit">Appliquer</button>
+        </form>
+
+        <!-- Résultats des calculs -->
+        <div class="results">
+            {% if moyenne_note_seance %}
+                <h2>Moyenne des notes de séance</h2>
+                <p><strong>Date :</strong> {{ selected_date or 'Toutes les dates' }}</p>
+                <p><strong>Moyenne :</strong> {{ moyenne_note_seance }}</p>
+            {% else %}
+                <p>Aucune donnée trouvée pour les critères sélectionnés.</p>
+            {% endif %}
+
+            {% if moyenne_note_animateur %}
+                <h2>Moyenne des notes par animateur</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Animateur</th>
+                            <th>Moyenne des notes de séance</th>
+                            <th>Moyenne des notes d'animation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for animateur, moyennes in moyenne_note_animateur.items() %}
+                            <tr>
+                                <td>{{ animateur }}</td>
+                                <td>{{ moyennes['Note_Seance'] }}</td>
+                                <td>{{ moyennes['Note_Animation'] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
