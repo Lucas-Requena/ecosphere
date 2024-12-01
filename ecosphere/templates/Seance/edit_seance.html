@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>Modifier une séance</title>
+{% endblock %}
+
+{% block body %}
+    <h2>Modifier une séance</h2>
+    <form method="post" action="{{ url_for('valid_edit_seance') }}">
+        <input type="hidden" name="id_seance" value="{{ seance.id_Seance }}">
+
+        <label for="DateSeance">Date</label><br>
+        <input type="date" id="DateSeance" name="DateSeance" value="{{ seance.DateSeance }}" required><br>
+        <br>
+
+        <label for="PlacesDisponibles">Places Disponibles</label><br>
+        <input type="number" id="PlacesDisponibles" name="PlacesDisponibles" value="{{ seance.PlacesDisponibles }}" required><br>
+        <br>
+
+        <label for="IDlieu">Lieu</label><br>
+        <select id="IDlieu" name="id_lieu" required>
+            {% for lieu in lieux %}
+                <option value="{{ lieu.IDlieu }}" {% if lieu.IDlieu == seance.IDlieu %}selected{% endif %}>
+                    {{ lieu.NomLieu }}
+                </option>
+            {% endfor %}
+        </select><br>
+        <br>
+
+        <label for="IDatelier">Atelier</label><br>
+        <select id="IDatelier" name="id_atelier" required>
+            {% for atelier in ateliers %}
+                <option value="{{ atelier.id_atelier }}" {% if atelier.id_atelier == seance.id_atelier %}selected{% endif %}>
+                    {{ atelier.Nom_Atelier }}
+                </option>
+            {% endfor %}
+        </select><br>
+        <br>
+        <br>
+
+        <input type="submit" value="Modifier">
+    </form>
+{% endblock %}

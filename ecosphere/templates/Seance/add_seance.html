@@ -11,12 +11,7 @@
         <legend>Créer une séance</legend>
 
         <label for="DateSeance">Date</label><br>
-        <select id="DateSeance" name="DateSeance" required>
-            <option value="">Sélectionner la date</option>
-            {% for type in seance %}
-            <option value="{{ type.id_Seance }}">{{ type.DateSeance }}</option>
-            {% endfor %}
-        </select>
+        <input id="DateSeance" type="date" name="DateSeance" required>
         <br><br>
 
         <label for="PlacesDisponibles">Nombre de Places Disponibles</label><br>

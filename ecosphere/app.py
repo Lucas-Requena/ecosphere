@@ -67,9 +67,9 @@ def delete_evaluation():
 def add_evaluation():
     mycursor = get_db().cursor()
     sql='''SELECT DISTINCT Animateur.N_Animateur, Animateur.Nom_Animateur
-FROM Animateur
-LEFT JOIN Evaluation ON Evaluation.N_Animateur = Animateur.N_Animateur;
-'''
+    FROM Animateur
+    LEFT JOIN Evaluation ON Evaluation.N_Animateur = Animateur.N_Animateur;
+    '''
     mycursor.execute(sql)
     animateur = mycursor.fetchall()
 
@@ -150,15 +150,25 @@ def valid_edit_evaluation():
     return redirect('/evaluation/show')
 
 @app.route('/evaluation/etat', methods=['GET'])
-def show_evaluation_state():
-    date_filter = request.args.get('date')
-    animateur_filter = request.args.get('animateur')
+def etat_evaluation():
+    date_filtre = request.args.get('date')
+    animateur_filtre = request.args.get('animateur')
+    mycursor = get_db().cursor()
+    sql_dates = '''SELECT DISTINCT DateSeance FROM Seance ORDER BY DateSeance'''
+    mycursor.execute(sql_dates)
+    dates = mycursor.fetchall()
+    sql = '''SELECT AVG(Note_Seance) AS moyenne
+    FROM Evaluation
+    INNER JOIN Seance ON Evaluation.idSeance = Seance.id_Seance
+    WHERE Seance.DateSeance = %s'''
+    mycursor.execute(sql, (date_filtre,))
+    moyenne_note_seance = mycursor.fetchone()['moyenne']
     mycursor = get_db().cursor()
     sql = '''SELECT AVG(Note_Seance) AS moyenne
     FROM Evaluation
     INNER JOIN Seance ON Evaluation.idSeance = Seance.id_Seance
     WHERE Seance.DateSeance = %s'''
-    mycursor.execute(sql, (date_filter,))
+    mycursor.execute(sql, (date_filtre,))
     moyenne_note_seance = mycursor.fetchone()['moyenne']
     sql = '''SELECT Animateur.Nom_Animateur, 
     AVG(Note_Seance) AS MoyenneNoteSeance, 
@@ -177,9 +187,8 @@ def show_evaluation_state():
     sql = 'SELECT N_Animateur, Nom_Animateur FROM Animateur'
     mycursor.execute(sql)
     animateurs = mycursor.fetchall()
+    return render_template('Evaluation/etat_evaluation.html',moyenne_note_seance=moyenne_note_seance,moyenne_note_animateur=moyenne_note_animateur,animateurs=animateurs,dates=dates,selected_date=date_filtre)
 
-    return render_template('etat_evaluation.html',moyenne_note_seance=moyenne_note_seance,moyenne_note_animateur=moyenne_note_animateur,animateurs=animateurs,selected_date=date_filter
-    )
 
 
 ###Seance###
@@ -233,6 +242,55 @@ def valid_add_seance():
     flash(message, 'alert-success')
     return redirect('/seance/show')
 
+@app.route('/seance/edit', methods=['GET'])
+def edit_seance():
+    id_seance = int(request.args.get('id'))
+    if not id_seance:
+        abort(404, description="Séance introuvable")
+
+    mycursor = get_db().cursor()
+
+    sql_seance = "SELECT * FROM Seance WHERE id_Seance = %s"
+    mycursor.execute(sql_seance, (id_seance,))
+    seance = mycursor.fetchone()
+
+    sql_lieux = "SELECT IDlieu, NomLieu FROM Lieu"
+    mycursor.execute(sql_lieux)
+    lieux = mycursor.fetchall()
+
+    sql_ateliers = "SELECT id_atelier, Nom_Atelier FROM Atelier"
+    mycursor.execute(sql_ateliers)
+    ateliers = mycursor.fetchall()
+
+    return render_template('Seance/edit_seance.html', seance=seance, lieux=lieux, ateliers=ateliers)
+
+@app.route('/seance/edit', methods=['POST'])
+def valid_edit_seance():
+    id_seance = int(request.form.get('id_seance', ''))
+    DateSeance = request.form.get('DateSeance', '')
+    PlacesDisponibles = request.form.get('PlacesDisponibles', '')
+    IDlieu = int(request.form.get('id_lieu', ''))
+    IDatelier = int(request.form.get('id_atelier', ''))
+
+    mycursor = get_db().cursor()
+    sql = '''
+        UPDATE Seance
+        SET DateSeance = %s, PlacesDisponibles = %s, IDlieu = %s, id_atelier = %s
+        WHERE id_Seance = %s
+    '''
+    tuple_sql = (DateSeance, PlacesDisponibles, IDlieu, IDatelier, id_seance)
+    mycursor.execute(sql, tuple_sql)
+    get_db().commit()
+
+    message = (
+        f"\"Séance modifiée : Date = {DateSeance}, "
+        f"Nombre de places disponibles = {PlacesDisponibles}, "
+        f"ID du lieu = {IDlieu}, "
+        f"ID de l'atelier = {IDatelier}\""
+    )
+    flash(message, 'alert-success')
+    return redirect('/seance/show')
+
 @app.route('/seance/delete', methods=['GET'])
 def delete_seance():
     print('''suppression d'une seance''')
@@ -247,6 +305,7 @@ def delete_seance():
     mycursor.execute(sql, tuple_sql)
     get_db().commit()
     return redirect('/seance/show')
+
 
 
 
