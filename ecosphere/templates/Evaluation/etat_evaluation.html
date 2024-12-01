@@ -5,53 +5,60 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h1>État des Évaluations</h1>
+    <div class="container mt-4">
+        <h1 class="mb-4 text-center">État des Évaluations</h1>
 
-
-        <form method="GET" action="/evaluation/etat">
-            <div class="form-group">
-                <label for="date">Filtrer par date :</label>
-        <select id="date" name="date">
-            <option value="">Toutes les dates</option>
-            {% for date in dates %}
-                <option value="{{ date['DateSeance'] }}"
-                        {% if request.args.get('date') == date['DateSeance'] %}selected{% endif %}>
-                    {{ date['DateSeance'] }}
-                </option>
-            {% endfor %}
-        </select>
-
+        <form method="GET" action="/evaluation/etat" class="mb-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="date">Filtrer par date :</label>
+                        <select id="date" name="date" class="form-control">
+                            <option value="">Toutes les dates</option>
+                            {% for date in dates %}
+                                <option value="{{ date['DateSeance'] }}"
+                                        {% if request.args.get('date') == date['DateSeance'] %}selected{% endif %}>
+                                    {{ date['DateSeance'] }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="animateur">Filtrer par animateur :</label>
+                        <select id="animateur" name="animateur" class="form-control">
+                            <option value="">Tous les animateurs</option>
+                            {% for animateur in animateurs %}
+                                <option value="{{ animateur['N_Animateur'] }}"
+                                        {% if request.args.get('animateur') == animateur['N_Animateur']|string %}selected{% endif %}>
+                                    {{ animateur['Nom_Animateur'] }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="animateur">Filtrer par animateur :</label>
-                <select id="animateur" name="animateur">
-                    <option value="">Tous les animateurs</option>
-                    {% for animateur in animateurs %}
-                        <option value="{{ animateur['N_Animateur'] }}"
-                                {% if request.args.get('animateur') == animateur['N_Animateur']|string %}selected{% endif %}>
-                            {{ animateur['Nom_Animateur'] }}
-                        </option>
-                    {% endfor %}
-                </select>
-            </div>
-            <button type="submit">Appliquer</button>
+            <button type="submit" class="btn btn-primary">Appliquer</button>
         </form>
-
 
         <div class="results">
             {% if moyenne_note_seance %}
-                <h2>Moyenne des notes de séance</h2>
-                <p><strong>Date :</strong> {{ selected_date or 'Toutes les dates' }}</p>
-                <p><strong>Moyenne :</strong> {{ moyenne_note_seance }}</p>
+                <div class="alert alert-info">
+                    <h2>Moyenne des notes de séance</h2>
+                    <p><strong>Date :</strong> {{ selected_date or 'Toutes les dates' }}</p>
+                    <p><strong>Moyenne :</strong> {{ moyenne_note_seance }}</p>
+                </div>
             {% else %}
-                <p>Aucune donnée trouvée pour les critères sélectionnés.</p>
+                <div class="alert alert-warning">
+                    <p>Aucune donnée trouvée pour les critères sélectionnés.</p>
+                </div>
             {% endif %}
 
             {% if moyenne_note_animateur %}
                 <h2>Moyenne des notes par animateur</h2>
-                <table>
-                    <thead>
+                <table class="table table-striped table-bordered">
+                    <thead class="thead-dark">
                         <tr>
                             <th>Animateur</th>
                             <th>Moyenne des notes de séance</th>
