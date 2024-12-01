@@ -4,13 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d446f177-a1da-4eff-a1cd-701c1e570b90" name="Changes" comment="debut de correction de la navbar" />
+    <list default="true" id="d446f177-a1da-4eff-a1cd-701c1e570b90" name="Changes" comment="changement dans l'etat">
+      <change beforePath="$PROJECT_DIR$/ecosphere/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecosphere/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecosphere/templates/_nav.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecosphere/templates/_nav.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -73,31 +77,7 @@
       <workItem from="1732964325490" duration="6791000" />
       <workItem from="1732989662965" duration="4705000" />
       <workItem from="1732994727453" duration="66000" />
-      <workItem from="1733057278518" duration="4137000" />
-    </task>
-    <task id="LOCAL-00001" summary="ajout des dossier individuel pour le crud">
-      <option name="closed" value="true" />
-      <created>1732196639281</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1732196639281</updated>
-    </task>
-    <task id="LOCAL-00002" summary="ajout du fichier show de l'évalutation">
-      <option name="closed" value="true" />
-      <created>1732196798503</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1732196798503</updated>
-    </task>
-    <task id="LOCAL-00003" summary=" mis a jour du sql">
-      <option name="closed" value="true" />
-      <created>1732197468962</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1732197468962</updated>
+      <workItem from="1733057278518" duration="9863000" />
     </task>
     <task id="LOCAL-00004" summary=" mis a jour du sql">
       <option name="closed" value="true" />
@@ -467,7 +447,31 @@
       <option name="project" value="LOCAL" />
       <updated>1733059836378</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="debut de correction de la navbar">
+      <option name="closed" value="true" />
+      <created>1733064062068</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1733064062069</updated>
+    </task>
+    <task id="LOCAL-00051" summary="changement dans l'etat">
+      <option name="closed" value="true" />
+      <created>1733067907324</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1733067907324</updated>
+    </task>
+    <task id="LOCAL-00052" summary="changement dans l'etat">
+      <option name="closed" value="true" />
+      <created>1733069992982</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1733069992982</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -489,7 +493,8 @@
     <MESSAGE value="edit mémoire valeur fini" />
     <MESSAGE value="correction du problème des 2 template" />
     <MESSAGE value="debut de correction de la navbar" />
-    <option name="LAST_COMMIT_MESSAGE" value="debut de correction de la navbar" />
+    <MESSAGE value="changement dans l'etat" />
+    <option name="LAST_COMMIT_MESSAGE" value="changement dans l'etat" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ecosphere$app.coverage" NAME="app Coverage Results" MODIFIED="1733057432488" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ecosphere" />
