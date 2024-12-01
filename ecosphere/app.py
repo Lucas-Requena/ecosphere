@@ -157,37 +157,46 @@ def etat_evaluation():
     sql_dates = '''SELECT DISTINCT DateSeance FROM Seance ORDER BY DateSeance'''
     mycursor.execute(sql_dates)
     dates = mycursor.fetchall()
-    sql = '''SELECT AVG(Note_Seance) AS moyenne
-    FROM Evaluation
-    INNER JOIN Seance ON Evaluation.idSeance = Seance.id_Seance
-    WHERE Seance.DateSeance = %s'''
-    mycursor.execute(sql, (date_filtre,))
-    moyenne_note_seance = mycursor.fetchone()['moyenne']
-    mycursor = get_db().cursor()
-    sql = '''SELECT AVG(Note_Seance) AS moyenne
-    FROM Evaluation
-    INNER JOIN Seance ON Evaluation.idSeance = Seance.id_Seance
-    WHERE Seance.DateSeance = %s'''
-    mycursor.execute(sql, (date_filtre,))
-    moyenne_note_seance = mycursor.fetchone()['moyenne']
-    sql = '''SELECT Animateur.Nom_Animateur, 
-    AVG(Note_Seance) AS MoyenneNoteSeance, 
-    AVG(Note_Animation) AS MoyenneNoteAnimation
-    FROM Evaluation
-    INNER JOIN Animateur ON Evaluation.N_Animateur = Animateur.N_Animateur
-    GROUP BY Animateur.Nom_Animateur'''
-    mycursor.execute(sql)
+    if date_filtre:
+        sql = '''SELECT AVG(Note_Seance) AS moyenne
+                 FROM Evaluation
+                 INNER JOIN Seance ON Evaluation.idSeance = Seance.id_Seance
+                 WHERE Seance.DateSeance = %s'''
+        mycursor.execute(sql, (date_filtre,))
+        moyenne_note_seance = mycursor.fetchone()['moyenne']
+    else:
+        sql = '''SELECT AVG(Note_Seance) AS moyenne
+                 FROM Evaluation
+                 INNER JOIN Seance ON Evaluation.idSeance = Seance.id_Seance'''
+        mycursor.execute(sql)
+        moyenne_note_seance = mycursor.fetchone()['moyenne']
+    if animateur_filtre:
+        sql = '''SELECT Animateur.Nom_Animateur, 
+                AVG(Note_Seance) AS MoyenneNoteSeance, 
+                AVG(Note_Animation) AS MoyenneNoteAnimation
+                 FROM Evaluation
+                 INNER JOIN Animateur ON Evaluation.N_Animateur = Animateur.N_Animateur
+                 WHERE Animateur.N_Animateur = %s
+                 GROUP BY Animateur.Nom_Animateur'''
+        mycursor.execute(sql, (animateur_filtre,))
+    else:
+        sql = '''SELECT Animateur.Nom_Animateur, AVG(Note_Seance) AS MoyenneNoteSeance, AVG(Note_Animation) AS MoyenneNoteAnimation
+                 FROM Evaluation
+                 INNER JOIN Animateur ON Evaluation.N_Animateur = Animateur.N_Animateur
+                 GROUP BY Animateur.Nom_Animateur'''
+        mycursor.execute(sql)
+
     moyenne_note_animateur = {
         row['Nom_Animateur']: {
             'Note_Seance': row['MoyenneNoteSeance'],
             'Note_Animation': row['MoyenneNoteAnimation']
         }
-        for row in mycursor.fetchall()
-    }
+        for row in mycursor.fetchall()}
     sql = 'SELECT N_Animateur, Nom_Animateur FROM Animateur'
     mycursor.execute(sql)
     animateurs = mycursor.fetchall()
-    return render_template('Evaluation/etat_evaluation.html',moyenne_note_seance=moyenne_note_seance,moyenne_note_animateur=moyenne_note_animateur,animateurs=animateurs,dates=dates,selected_date=date_filtre)
+
+    return render_template('Evaluation/etat_evaluation.html',moyenne_note_seance=moyenne_note_seance,moyenne_note_animateur=moyenne_note_animateur,animateurs=animateurs, dates=dates, selected_date=date_filtre)
 
 
 
@@ -209,8 +218,8 @@ def add_seance():
     seances = mycursor.fetchall()
 
     sql='''SELECT DISTINCT Seance.id_Seance, Seance.DateSeance
-    FROM Seance
-    LEFT JOIN Evaluation ON Seance.id_Seance = Seance.id_Seance'''
+           FROM Seance
+           LEFT JOIN Evaluation ON Seance.id_Seance = Seance.id_Seance'''
     mycursor.execute(sql)
     seances = mycursor.fetchall()
 
