@@ -1,1 +1,43 @@
 <!-- Contenu pour show_inscription.html -->
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>Afficher les Inscriptions</title>
+{% endblock %}
+
+{% block body %}
+<h3>Inscriptions</h3>
+<a href="/inscription/add">Ajouter une Inscription</a>
+<br><br>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>id</th><th>date de la séance</th><th>nom du participant</th><th>date d'inscription</th><th>prix de l'inscription</th><th>opération</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% if inscriptions | length >= 1 %}
+        {% for ligne in inscriptions %}
+           <tr>
+                  <td>{{ ligne.id }}</td>
+                  <td>{{ ligne.DateSeance }}</td>
+                  <td>{{ ligne.Nom_Participant }}</td>
+                  <td>{{ ligne.date_Inscription }}</td>
+                  <td>{{ ligne.prix_inscription }}</td>
+
+                  <td>
+                      <a href="/inscription/edit?id={{ ligne.id }}">Éditer</a>&nbsp;
+                      <a href="/inscription/delete?id={{ ligne.id }}">Supprimer</a>
+                  </td>
+           </tr>
+        {% endfor %}
+    {% else %}
+            <tr>
+                  <td colspan="6">Pas d'inscription</td>
+           </tr>
+    {% endif %}
+    </tbody>
+</table>
+{% endblock %}
+
