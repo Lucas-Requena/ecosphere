@@ -49,8 +49,8 @@ CREATE TABLE Inscription(
     id_inscription INT AUTO_INCREMENT,
     idSeance INT,
     idParticipant INT,
-    date_insccription DATE,
-    priInscription INT,
+    date_Inscription DATE,
+    prix_inscription INT,
     PRIMARY KEY (id_inscription),
     FOREIGN KEY (idSeance) REFERENCES Seance(id_Seance),
     FOREIGN KEY (idParticipant) REFERENCES Participant(idParticipant)
