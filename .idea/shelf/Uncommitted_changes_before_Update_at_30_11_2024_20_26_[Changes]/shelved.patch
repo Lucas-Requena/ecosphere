@@ -1,0 +1,18 @@
+Index: ecosphere/templates/Evaluation/edit_evaluation.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{% extends 'layout.html' %}\r\n\r\n{% block title %}\r\n    <title>modifier une evaluation</title>\r\n{% endblock %}\r\n\r\n{% block body %}\r\n  <h2>modifier une evaluation</h2>\r\n  <form method=\"post\" action=\"/evaluation/edit\" >\r\n    <fieldset>\r\n        <legend> modifier une evaluation</legend>\r\n        <input type=\"hidden\" name=\"id_evaluation\" value=\"{{ evaluation.id_evaluation }}\">\r\n        <label for=\"Nom_Animateur\">animateur</label><br>\r\n        <select name=\"Nom_Animateur\" id=\"Nom_Animateur\"   required>\r\n            <option value=\"\">selectionner l'animateur</option>\r\n            {% for type in animateurs %}\r\n            <option value=\"{{ type.N_Animateur }}\" {% if type.N_Animateur == evaluation.N_Animateur %}selected{% endif %}> {{ type.Nom_Animateur }} </option>\r\n            {% endfor %}\r\n        </select><br>\r\n        <label for=\"DateSeance\">date</label><br>\r\n        <select name=\"DateSeance\" id=\"DateSeance\"   required>\r\n            <option value=\"\">selectionner la date</option>\r\n            {% for type in seances %}\r\n            <option value=\"{{ type.id_Seance }}\" {% if type.id_Seance == evaluation.idSeance %}selected{% endif %}> {{ type.DateSeance }} </option>\r\n            {% endfor %}\r\n            </select><br>\r\n        <label for=\"Nom_Participant\">participant</label><br>\r\n        <select name=\"Nom_Participant\" id=\"Nom_Participant\"   required>\r\n            <option value=\"\">selectionner le nom du participant</option>\r\n            {% for type in participants %}\r\n            <option value=\"{{ type.idParticipant }}\" {% if type.idParticipant == evaluation.idParticipant %}selected{% endif %}> {{ type.Nom_Participant }} </option>\r\n            {% endfor %}\r\n            </select><br>\r\n        <label for=\"Note_Seance\">note seance</label><br>\r\n        <input id=\"Note_Seance\" type=\"number\" name=\"Note_Seance\" size=\"18\" value=\"{{ evaluation.Note_Seance }}\" placeholder=\"Saisir la note de la seance\" required><br>\r\n        <label for=\"Note_Animation\">note animation</label><br>\r\n        <input id=\"Note_Animation\" type=\"number\" name=\"Note_Animation\" size=\"18\" value=\"{{ evaluation.Note_Animation }}\" placeholder=\"Saisir la note de l'animation\" required><br>\r\n\r\n        <input type=\"submit\" value=\"Modifier\" name=\"Valider\" >\r\n    </fieldset>\r\n  </form>\r\n{% endblock %}<br>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ecosphere/templates/Evaluation/edit_evaluation.html b/ecosphere/templates/Evaluation/edit_evaluation.html
+--- a/ecosphere/templates/Evaluation/edit_evaluation.html	(revision 7764bac474db3780a74df8d243d30aa30bddc7aa)
++++ b/ecosphere/templates/Evaluation/edit_evaluation.html	(date 1732994760487)
+@@ -39,4 +39,4 @@
+         <input type="submit" value="Modifier" name="Valider" >
+     </fieldset>
+   </form>
+-{% endblock %}<br>
+\ No newline at end of file
++{% endblock %}
+\ No newline at end of file

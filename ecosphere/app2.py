@@ -136,3 +136,4 @@ def delete_seance():
     mycursor.execute(sql, tuple_sql)
     get_db().commit()
     return redirect('/seance/show')
+

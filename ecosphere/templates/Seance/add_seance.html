@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>Ajouter une Séance</title>
+{% endblock %}
+
+{% block body %}
+  <h2>Ajout d'une séance</h2>
+ <form method="post" action="/seance/add">
+    <fieldset>
+        <legend>Créer une séance</legend>
+
+        <label for="DateSeance">Date</label><br>
+        <input id="DateSeance" type="date" name="DateSeance" required>
+        <br><br>
+
+        <label for="PlacesDisponibles">Nombre de Places Disponibles</label><br>
+        <input id="PlacesDisponibles" type="number" name="PlacesDisponibles" size="18"
+               placeholder="Saisir le nombre de places disponibles" required>
+        <br><br>
+
+
+        <label for="IDlieu">Lieu de la séance</label><br>
+        <select id="IDlieu" name="id_lieu" required>
+            <option value="">Sélectionner le lieu</option>
+            {% for lieu_item in lieu %}
+            <option value="{{ lieu_item.IDlieu }}">{{ lieu_item.NomLieu }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <br>
+
+        <label for="IDatelier">Atelier de la séance</label><br>
+        <select id="IDatelier" name="id_atelier" required>
+            <option value="">Sélectionner l'atelier</option>
+            {% for atelier in ateliers %}
+                <option value="{{ atelier.id_atelier }}">{{ atelier.Nom_Atelier }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <br>
+
+        <input type="submit" value="Créer" name="Valider">
+    </fieldset>
+</form>
+
+{% endblock %}

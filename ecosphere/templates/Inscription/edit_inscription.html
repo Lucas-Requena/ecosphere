@@ -1,0 +1,39 @@
+<!-- Contenu pour edit_inscription.html -->
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>Modifier une Inscription</title>
+{% endblock %}
+
+{% block body %}
+  <h2>Modifier une Inscription</h2>
+  <form method="post" action="/inscription/edit">
+    <fieldset>
+        <legend>Modifier une Inscription</legend>
+
+        <input type="hidden" name="id_inscription" value="{{ inscription.id_inscription }}">
+
+        <label for="idSeance">Séance</label><br>
+        <select name="idSeance" id="idSeance" required>
+            {% for seance in seances %}
+                <option value="{{ seance.id_Seance }}" {% if seance.id_Seance == inscription.idSeance %}selected{% endif %}>{{ seance.DateSeance }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="idParticipant">Participant</label><br>
+        <select name="idParticipant" id="idParticipant" required>
+            {% for participant in participants %}
+                <option value="{{ participant.idParticipant }}" {% if participant.idParticipant == inscription.idParticipant %}selected{% endif %}>{{ participant.Nom_Participant }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="date_Inscription">Date d'Inscription</label><br>
+        <input id="date_Inscription" type="date" name="date_Inscription" value="{{ inscription.date_Inscription }}" required><br>
+
+        <label for="prix_inscription">Prix de l'Inscription</label><br>
+        <input id="prix_inscription" type="number" name="prix_inscription" value="{{ inscription.prix_inscription }}" required><br>
+
+        <input type="submit" value="Modifier" name="Valider">
+    </fieldset>
+  </form>
+{% endblock %}

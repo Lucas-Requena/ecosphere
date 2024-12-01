@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>modifier une evaluation</title>
+{% endblock %}
+
+{% block body %}
+  <h2>modifier une evaluation</h2>
+  <form method="post" action="/evaluation/edit" >
+    <fieldset>
+        <legend> modifier une evaluation</legend>
+        <input type="hidden" name="id_evaluation" value="{{ evaluation.id_evaluation }}">
+        <label for="Nom_Animateur">animateur</label><br>
+        <select name="Nom_Animateur" id="Nom_Animateur"   required>
+            <option value="">selectionner l'animateur</option>
+            {% for type in animateurs %}
+            <option value="{{ type.N_Animateur }}" {% if type.N_Animateur == evaluation.N_Animateur %}selected{% endif %}> {{ type.Nom_Animateur }} </option>
+            {% endfor %}
+        </select><br>
+        <label for="DateSeance">date</label><br>
+        <select name="DateSeance" id="DateSeance"   required>
+            <option value="">selectionner la date</option>
+            {% for type in seances %}
+            <option value="{{ type.id_Seance }}" {% if type.id_Seance == evaluation.idSeance %}selected{% endif %}> {{ type.DateSeance }} </option>
+            {% endfor %}
+            </select><br>
+        <label for="Nom_Participant">participant</label><br>
+        <select name="Nom_Participant" id="Nom_Participant"   required>
+            <option value="">selectionner le nom du participant</option>
+            {% for type in participants %}
+            <option value="{{ type.idParticipant }}" {% if type.idParticipant == evaluation.idParticipant %}selected{% endif %}> {{ type.Nom_Participant }} </option>
+            {% endfor %}
+            </select><br>
+        <label for="Note_Seance">note seance</label><br>
+        <input id="Note_Seance" type="number" name="Note_Seance" size="18" value="{{ evaluation.Note_Seance }}" placeholder="Saisir la note de la seance" required><br>
+        <label for="Note_Animation">note animation</label><br>
+        <input id="Note_Animation" type="number" name="Note_Animation" size="18" value="{{ evaluation.Note_Animation }}" placeholder="Saisir la note de l'animation" required><br>
+
+        <input type="submit" value="Modifier" name="Valider" >
+    </fieldset>
+  </form>
+{% endblock %}
