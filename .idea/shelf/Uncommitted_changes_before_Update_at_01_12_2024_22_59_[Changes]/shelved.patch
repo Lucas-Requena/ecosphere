@@ -1,0 +1,19 @@
+Index: ecosphere/templates/_nav.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">\r\n    <div class=\"container-fluid\">\r\n      <a class=\"navbar-brand\" href=\"/\">EcoSphere Numerique</a>\r\n      <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarNavDarkDropdown\" aria-controls=\"navbarNavDarkDropdown\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n        <span class=\"navbar-toggler-icon\"></span>\r\n      </button>\r\n      <div class=\"collapse navbar-collapse\" id=\"navbarNavDarkDropdown\">\r\n        <ul class=\"navbar-nav\">\r\n\r\n\r\n          <li class=\"nav-item dropdown\" style=\"margin-left: 100px\">\r\n            <a class=\"nav-link dropdown-toggle\" href=\"/evaluation/show\" id=\"navbarDarkDropdownMenuLink\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">\r\n              Evaluation (Lucas)\r\n            </a>\r\n            <ul class=\"dropdown-menu dropdown-menu-dark\" aria-labelledby=\"navbarDarkDropdownMenuLink\">\r\n              <li><a class=\"dropdown-item\" href=\"/evaluation/etat\">État des évaluations</a></li>\r\n              <li><a class=\"dropdown-item\" href=\"/evaluation/show\"> affichage des Evaluation</a></li>\r\n            </ul>\r\n          </li>\r\n\r\n\r\n            <li class=\"nav-item dropdown\" style=\"margin-left: 100px\">\r\n            <a class=\"nav-link dropdown-toggle\" href=\"/seance/show\" id=\"navbarDarkDropdownMenuLink\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">\r\n              Seance (Julian)\r\n            </a>\r\n            <ul class=\"dropdown-menu dropdown-menu-dark\" aria-labelledby=\"navbarDarkDropdownMenuLink\">\r\n              <li><a class=\"dropdown-item\" href=\"#\">Filtrer</a></li>\r\n              <li><a class=\"dropdown-item\" href=\"/seance/show\">Seance</a></li>\r\n            </ul>\r\n          </li>\r\n\r\n\r\n            <li class=\"nav-item dropdown\" style=\"margin-left: 100px\">\r\n            <a class=\"nav-link dropdown-toggle\" href=\"/inscription/show\" id=\"navbarDarkDropdownMenuLink\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">\r\n              Inscription (Serine)\r\n            </a>\r\n            <ul class=\"dropdown-menu dropdown-menu-dark\" aria-labelledby=\"navbarDarkDropdownMenuLink\">\r\n              <li><a class=\"dropdown-item\" href=\"#\">Filtrer</a></li>\r\n              <li><a class=\"dropdown-item\" href=\"/inscription/show\">Inscription</a></li>\r\n            </ul>\r\n          </li>\r\n        </ul>\r\n      </div>\r\n    </div>\r\n  </nav>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ecosphere/templates/_nav.html b/ecosphere/templates/_nav.html
+--- a/ecosphere/templates/_nav.html	(revision 54dd73ceae02b0e17bea7c3bf0f9807cc1838801)
++++ b/ecosphere/templates/_nav.html	(date 1733087028390)
+@@ -36,7 +36,7 @@
+             </a>
+             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+               <li><a class="dropdown-item" href="#">Filtrer</a></li>
+-              <li><a class="dropdown-item" href="/inscription/show">Inscription</a></li>
++              <li><a class="dropdown-item" href="/inscription/show">Affichage des Inscriptions</a></li>
+             </ul>
+           </li>
+         </ul>
