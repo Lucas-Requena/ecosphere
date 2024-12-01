@@ -350,8 +350,8 @@ def show_inscription():
              INNER JOIN Participant ON Inscription.idParticipant = Participant.idParticipant
              ORDER BY id_inscription;'''
     mycursor.execute(sql)
-    inscriptions = mycursor.fetchall()
-    return render_template('Inscription/show_inscription.html', inscriptions=inscriptions)
+    inscription = mycursor.fetchall()
+    return render_template('Inscription/show_inscription.html', inscriptions=inscription)
 
 
 @app.route('/inscription/delete', methods=['GET'])
