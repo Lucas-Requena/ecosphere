@@ -1,19 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends 'layout.html' %}
+
+{% block title %}
     <title>État des Évaluations</title>
-</head>
-<body>
+{% endblock %}
+
+{% block body %}
     <div class="container">
         <h1>État des Évaluations</h1>
 
-        <!-- Formulaire de filtre -->
-        <form method="GET" action="{{ url_for('show_evaluation_state') }}">
+
+        <form method="GET" action="/evaluation/etat">
             <div class="form-group">
                 <label for="date">Filtrer par date :</label>
-                <input type="date" id="date" name="date" value="{{ request.args.get('date', '') }}">
+        <select id="date" name="date">
+            <option value="">Toutes les dates</option>
+            {% for date in dates %}
+                <option value="{{ date['DateSeance'] }}"
+                        {% if request.args.get('date') == date['DateSeance'] %}selected{% endif %}>
+                    {{ date['DateSeance'] }}
+                </option>
+            {% endfor %}
+        </select>
+
             </div>
             <div class="form-group">
                 <label for="animateur">Filtrer par animateur :</label>
@@ -30,7 +38,7 @@
             <button type="submit">Appliquer</button>
         </form>
 
-        <!-- Résultats des calculs -->
+
         <div class="results">
             {% if moyenne_note_seance %}
                 <h2>Moyenne des notes de séance</h2>
@@ -63,5 +71,4 @@
             {% endif %}
         </div>
     </div>
-</body>
-</html>
+{% endblock %}
