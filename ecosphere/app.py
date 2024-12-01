@@ -202,10 +202,7 @@ def etat_evaluation():
         str = ','.join(['%s'] * len(participants_filtre))
         sql_participants = sql_participants % str
         mycursor.execute(sql_participants, tuple(participants_filtre))
-        moyenne_note_participant = {ligne['Nom_Participant']: {
-                                          'Note_Seance': ligne['MoyenneNoteSeance'],
-                                          'Note_Animation': ligne['MoyenneNoteAnimation']}
-                                    for ligne in mycursor.fetchall()}
+        moyenne_note_participant = {ligne['Nom_Participant']: {'Note_Seance': ligne['MoyenneNoteSeance'],'Note_Animation': ligne['MoyenneNoteAnimation']}for ligne in mycursor.fetchall()}
     else:
         moyenne_note_participant = {}
 
