@@ -544,4 +544,5 @@ def etat_inscription():
                            stats_participant=stats_participant,
                            participants=participants,
                            dates=dates,
-                           selected_date=date_filtre)
+                           selected_date=date_filtre,
+                           selected_participants=participant_filtre)
