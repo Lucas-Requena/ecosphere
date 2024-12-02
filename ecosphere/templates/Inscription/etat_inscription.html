@@ -11,7 +11,7 @@
 
         <form method="GET" action="/inscription/etat" class="mb-4">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label for="date">Filtrer par date :</label>
                         <select id="date" name="date" class="form-control">
@@ -25,9 +25,51 @@
                         </select>
                     </div>
                 </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="seance">Filtrer par séance :</label>
+                        <select id="seance" name="seance" class="form-control">
+                            <option value="">Toutes les séances</option>
+                            {% for seance in seances %}
+                                <option value="{{ seance['id_Seance'] }}"
+                                        {% if request.args.get('seance') == seance['id_Seance'] %}selected{% endif %}>
+                                    {{ seance['Description'] }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="animateur">Filtrer par animateur :</label>
+                        <select id="animateur" name="animateur" class="form-control">
+                            <option value="">Tous les animateurs</option>
+                            {% for animateur in animateurs %}
+                                <option value="{{ animateur['N_Animateur'] }}"
+                                        {% if request.args.get('animateur') == animateur['N_Animateur'] %}selected{% endif %}>
+                                    {{ animateur['Nom_Animateur'] }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
             </div>
 
-            <!-- Section des participants avec cases à cocher -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="prix_min">Prix minimum (€) :</label>
+                        <input type="number" id="prix_min" name="prix_min" class="form-control" value="{{ prix_min_filtre or '' }}">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="prix_max">Prix maximum (€) :</label>
+                        <input type="number" id="prix_max" name="prix_max" class="form-control" value="{{ prix_max_filtre or '' }}">
+                    </div>
+                </div>
+            </div>
+
             <div class="form-group">
                 <label>Filtrer par participant :</label><br>
                 {% for participant in participants %}
@@ -48,38 +90,4 @@
                     <h2>Statistiques Globales des Inscriptions</h2>
                     <p><strong>Date :</strong> {{ selected_date or 'Toutes les dates' }}</p>
                     <p><strong>Nombre total d'inscriptions :</strong> {{ stats_globales['nombre'] }}</p>
-                    <p><strong>Total des inscriptions (€) :</strong> {{ stats_globales['total'] }}</p>
-                    <p><strong>Prix moyen des inscriptions (€) :</strong> {{ stats_globales['moyenne'] }}</p>
-                </div>
-            {% else %}
-                <div class="alert alert-warning">
-                    <p>Aucune donnée trouvée pour les critères sélectionnés.</p>
-                </div>
-            {% endif %}
-
-            {% if stats_participant %}
-                <h2>Statistiques par Participant</h2>
-                <table class="table table-striped table-bordered">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>Participant</th>
-                            <th>Nombre d'Inscriptions</th>
-                            <th>Total des Inscriptions (€)</th>
-                            <th>Prix Moyen (€)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for participant, stats in stats_participant.items() %}
-                            <tr>
-                                <td>{{ participant }}</td>
-                                <td>{{ stats['nombre'] }}</td>
-                                <td>{{ stats['total'] }}</td>
-                                <td>{{ stats['moyenne'] }}</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            {% endif %}
-        </div>
-    </div>
-{% endblock %}
+                    <p><strong>Total des inscriptions (€) :</strong> {{ stats_global
