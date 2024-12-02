@@ -499,9 +499,9 @@ def valid_edit_inscription():
 @app.route('/inscription/etat', methods=['GET'])
 def etat_inscription():
     date_filtre = request.args.get('date')
-    participant_filtre = request.args.getlist('participant')
     prix_min_filtre = request.args.get('prix_min')
     prix_max_filtre = request.args.get('prix_max')
+    participant_filtre = request.args.getlist('participant')
 
     mycursor = get_db().cursor()
 
@@ -510,62 +510,38 @@ def etat_inscription():
     mycursor.execute(sql_dates)
     dates = mycursor.fetchall()
 
+    # Récupérer les participants distincts
+    sql_participants = '''SELECT idParticipant, Nom_Participant FROM Participant'''
+    mycursor.execute(sql_participants)
+    participants = mycursor.fetchall()
+
     # Construire la requête SQL en fonction des filtres
-    query = '''
-    SELECT COUNT(*) AS nombre, SUM(prix_inscription) AS total, AVG(prix_inscription) AS moyenne
+    sql = '''
+    SELECT Inscription.id_inscription AS id, Seance.DateSeance, Participant.Nom_Participant, 
+           Inscription.date_Inscription, Inscription.prix_inscription
     FROM Inscription
     INNER JOIN Seance ON Inscription.idSeance = Seance.id_Seance
     INNER JOIN Participant ON Inscription.idParticipant = Participant.idParticipant
-    WHERE 1=1
-    '''
+    WHERE 1=1'''
 
     params = []
-
     if date_filtre:
-        query += ' AND Seance.DateSeance = %s'
+        sql += ' AND Seance.DateSeance = %s'
         params.append(date_filtre)
 
-    if participant_filtre:
-        query += ' AND Participant.idParticipant IN (%s)' % ','.join(['%s'] * len(participant_filtre))
-        params.extend(participant_filtre)
-
     if prix_min_filtre:
-        query += ' AND Inscription.prix_inscription >= %s'
-        params.append(prix_min_filtre)
+        sql += ' AND Inscription.prix_inscription >= %s'
+        params.append(float(prix_min_filtre))
 
     if prix_max_filtre:
-        query += ' AND Inscription.prix_inscription <= %s'
-        params.append(prix_max_filtre)
+        sql += ' AND Inscription.prix_inscription <= %s'
+        params.append(float(prix_max_filtre))
 
-    mycursor.execute(query, tuple(params))
-    stats_globales = mycursor.fetchone()
-
-    # Calculer les statistiques par participant
     if participant_filtre:
-        sql_participants = '''SELECT Participant.Nom_Participant, COUNT(Inscription.id_inscription) AS nombre, SUM(prix_inscription) AS total, AVG(prix_inscription) AS moyenne
-                             FROM Inscription
-                             INNER JOIN Participant ON Inscription.idParticipant = Participant.idParticipant
-                             WHERE Participant.idParticipant IN (%s)
-                             GROUP BY Participant.Nom_Participant'''
-        sql_participants = sql_participants % ','.join(['%s'] * len(participant_filtre))
-        mycursor.execute(sql_participants, tuple(participant_filtre))
-        stats_participant = {
-            ligne['Nom_Participant']: {'nombre': ligne['nombre'], 'total': ligne['total'], 'moyenne': ligne['moyenne']}
-            for ligne in mycursor.fetchall()}
-    else:
-        stats_participant = {}
+        sql += ' AND Participant.idParticipant IN (%s)' % ','.join(['%s'] * len(participant_filtre))
+        params.extend(participant_filtre)
 
-    # Récupérer la liste des participants
-    sql = 'SELECT idParticipant, Nom_Participant FROM Participant'
-    mycursor.execute(sql)
-    participants = mycursor.fetchall()
+    mycursor.execute(sql, tuple(params))
+    inscriptions = mycursor.fetchall()
 
-    return render_template('Inscription/etat_inscription.html',
-                           stats_globales=stats_globales,
-                           stats_participant=stats_participant,
-                           participants=participants,
-                           dates=dates,
-                           selected_date=date_filtre,
-                           selected_participants=participant_filtre,
-                           prix_min_filtre=prix_min_filtre,
-                           prix_max_filtre=prix_max_filtre)
+    return render_template('Inscription/etat_inscription.html', inscriptions=inscriptions, participants=participants, dates=dates, selected_date=date_filtre, prix_min_filtre=prix_min_filtre, prix_max_filtre=prix_max_filtre, selected_participants=participant_filtre)
