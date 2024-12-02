@@ -447,3 +447,50 @@ def valid_edit_inscription():
     message = f'Inscription modifiée - Séance : {idSeance}, Participant : {idParticipant}, Date : {date_Inscription}, Prix : {prix_inscription}'
     flash(message, 'alert-success')
     return redirect('/inscription/show')
+
+@app.route('/inscription/etat', methods=['GET'])
+def etat_inscription():
+    date_filtre = request.args.get('date')
+    participant_filtre = request.args.getlist('participant')
+    mycursor = get_db().cursor()
+
+    sql_dates = '''SELECT DISTINCT DateSeance FROM Seance ORDER BY DateSeance'''
+    mycursor.execute(sql_dates)
+    dates = mycursor.fetchall()
+
+    if date_filtre:
+        sql = '''SELECT COUNT(*) AS nombre, SUM(prix_inscription) AS total, AVG(prix_inscription) AS moyenne
+                 FROM Inscription
+                 INNER JOIN Seance ON Inscription.idSeance = Seance.id_Seance
+                 WHERE Seance.DateSeance = %s'''
+        mycursor.execute(sql, (date_filtre,))
+        stats_globales = mycursor.fetchone()
+    else:
+        sql = '''SELECT COUNT(*) AS nombre, SUM(prix_inscription) AS total, AVG(prix_inscription) AS moyenne
+                 FROM Inscription'''
+        mycursor.execute(sql)
+        stats_globales = mycursor.fetchone()
+
+    if participant_filtre:
+        sql_participants = '''SELECT Participant.Nom_Participant, COUNT(Inscription.id_inscription) AS nombre, SUM(prix_inscription) AS total, AVG(prix_inscription) AS moyenne
+                             FROM Inscription
+                             INNER JOIN Participant ON Inscription.idParticipant = Participant.idParticipant
+                             WHERE Participant.idParticipant IN (%s)
+                             GROUP BY Participant.Nom_Participant'''
+        str = ','.join(['%s'] * len(participant_filtre))
+        sql_participants = sql_participants % str
+        mycursor.execute(sql_participants, tuple(participant_filtre))
+        stats_participant = {ligne['Nom_Participant']: {'nombre': ligne['nombre'], 'total': ligne['total'], 'moyenne': ligne['moyenne']} for ligne in mycursor.fetchall()}
+    else:
+        stats_participant = {}
+
+    sql = 'SELECT idParticipant, Nom_Participant FROM Participant'
+    mycursor.execute(sql)
+    participants = mycursor.fetchall()
+
+    return render_template('Inscription/etat_inscription.html',
+                           stats_globales=stats_globales,
+                           stats_participant=stats_participant,
+                           participants=participants,
+                           dates=dates,
+                           selected_date=date_filtre)
