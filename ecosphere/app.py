@@ -500,8 +500,6 @@ def valid_edit_inscription():
 def etat_inscription():
     date_filtre = request.args.get('date')
     participant_filtre = request.args.getlist('participant')
-    seance_filtre = request.args.get('seance')
-    animateur_filtre = request.args.get('animateur')
     prix_min_filtre = request.args.get('prix_min')
     prix_max_filtre = request.args.get('prix_max')
 
@@ -512,23 +510,12 @@ def etat_inscription():
     mycursor.execute(sql_dates)
     dates = mycursor.fetchall()
 
-    # Récupérer les séances distinctes
-    sql_seances = '''SELECT id_Seance, Description FROM Seance ORDER BY DateSeance'''
-    mycursor.execute(sql_seances)
-    seances = mycursor.fetchall()
-
-    # Récupérer les animateurs distincts
-    sql_animateurs = '''SELECT N_Animateur, Nom_Animateur FROM Animateur ORDER BY Nom_Animateur'''
-    mycursor.execute(sql_animateurs)
-    animateurs = mycursor.fetchall()
-
     # Construire la requête SQL en fonction des filtres
     query = '''
     SELECT COUNT(*) AS nombre, SUM(prix_inscription) AS total, AVG(prix_inscription) AS moyenne
     FROM Inscription
     INNER JOIN Seance ON Inscription.idSeance = Seance.id_Seance
     INNER JOIN Participant ON Inscription.idParticipant = Participant.idParticipant
-    INNER JOIN Animateur ON Seance.N_Animateur = Animateur.N_Animateur
     WHERE 1=1
     '''
 
@@ -541,14 +528,6 @@ def etat_inscription():
     if participant_filtre:
         query += ' AND Participant.idParticipant IN (%s)' % ','.join(['%s'] * len(participant_filtre))
         params.extend(participant_filtre)
-
-    if seance_filtre:
-        query += ' AND Seance.id_Seance = %s'
-        params.append(seance_filtre)
-
-    if animateur_filtre:
-        query += ' AND Animateur.N_Animateur = %s'
-        params.append(animateur_filtre)
 
     if prix_min_filtre:
         query += ' AND Inscription.prix_inscription >= %s'
@@ -564,10 +543,10 @@ def etat_inscription():
     # Calculer les statistiques par participant
     if participant_filtre:
         sql_participants = '''SELECT Participant.Nom_Participant, COUNT(Inscription.id_inscription) AS nombre, SUM(prix_inscription) AS total, AVG(prix_inscription) AS moyenne
-                              FROM Inscription
-                              INNER JOIN Participant ON Inscription.idParticipant = Participant.idParticipant
-                              WHERE Participant.idParticipant IN (%s)
-                              GROUP BY Participant.Nom_Participant'''
+                             FROM Inscription
+                             INNER JOIN Participant ON Inscription.idParticipant = Participant.idParticipant
+                             WHERE Participant.idParticipant IN (%s)
+                             GROUP BY Participant.Nom_Participant'''
         sql_participants = sql_participants % ','.join(['%s'] * len(participant_filtre))
         mycursor.execute(sql_participants, tuple(participant_filtre))
         stats_participant = {
@@ -586,11 +565,7 @@ def etat_inscription():
                            stats_participant=stats_participant,
                            participants=participants,
                            dates=dates,
-                           seances=seances,
-                           animateurs=animateurs,
                            selected_date=date_filtre,
                            selected_participants=participant_filtre,
-                           selected_seance=seance_filtre,
-                           selected_animateur=animateur_filtre,
                            prix_min_filtre=prix_min_filtre,
                            prix_max_filtre=prix_max_filtre)
