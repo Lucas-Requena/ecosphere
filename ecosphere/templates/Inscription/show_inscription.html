@@ -6,38 +6,44 @@
 {% endblock %}
 
 {% block body %}
-<h3>Inscriptions</h3>
-<a href="/inscription/add">Ajouter une Inscription</a>
-<br><br>
+<div class="container mt-4">
+    <h1 class="mb-4 text-center">Inscriptions</h1>
+    <div class="text-right mb-3">
+        <a href="/inscription/add" class="btn btn-success">Ajouter une Inscription</a>
+    </div>
 
-<table class="table">
-    <thead class="thead-dark">
-        <tr>
-            <th>id</th><th>date de la séance</th><th>nom du participant</th><th>date d'inscription</th><th>prix de l'inscription</th><th>opération</th>
-        </tr>
-    </thead>
-    <tbody>
-    {% if inscriptions | length >= 1 %}
-        {% for ligne in inscriptions %}
-           <tr>
-                  <td>{{ ligne.id }}</td>
-                  <td>{{ ligne.DateSeance }}</td>
-                  <td>{{ ligne.Nom_Participant }}</td>
-                  <td>{{ ligne.date_Inscription }}</td>
-                  <td>{{ ligne.prix_inscription }}</td>
-
-                  <td>
-                      <a href="/inscription/edit?id={{ ligne.id }}">Éditer</a>&nbsp;
-                      <a href="/inscription/delete?id={{ ligne.id }}">Supprimer</a>
-                  </td>
-           </tr>
-        {% endfor %}
-    {% else %}
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
             <tr>
-                  <td colspan="6">Pas d'inscription</td>
-           </tr>
-    {% endif %}
-    </tbody>
-</table>
+                <th>ID</th>
+                <th>Date de la Séance</th>
+                <th>Nom du Participant</th>
+                <th>Date d'Inscription</th>
+                <th>Prix de l'Inscription (€)</th>
+                <th>Opération</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% if inscriptions | length >= 1 %}
+            {% for ligne in inscriptions %}
+               <tr>
+                      <td>{{ ligne.id }}</td>
+                      <td>{{ ligne.DateSeance }}</td>
+                      <td>{{ ligne.Nom_Participant }}</td>
+                      <td>{{ ligne.date_Inscription }}</td>
+                      <td>{{ ligne.prix_inscription }}</td>
+                      <td>
+                          <a href="/inscription/edit?id={{ ligne.id }}" class="btn btn-warning btn-sm">Éditer</a>
+                          <a href="/inscription/delete?id={{ ligne.id }}" class="btn btn-danger btn-sm">Supprimer</a>
+                      </td>
+               </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="6" class="text-center">Pas d'inscription</td>
+            </tr>
+        {% endif %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}
-
