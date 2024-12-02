@@ -9,8 +9,6 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='image/logo.png') }}" >
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.css') }}" >
-        <!-- Ajout du lien CSS de Bootstrap -->
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     {% endblock %}
 </head>
 <body>
@@ -29,7 +27,6 @@
 <div class="container">
 {% block body %}
     <h1 style="color:darkslategray; margin: 40px">layout.html</h1>
-    <img style="position: absolute; right: 5px; top: 3px" width="50px" height="50px" src="{{ url_for('static', filename='image/logo1.png') }}">
     <h2>Groupe n°17 -- EcoSphere Numerique</h2>
     <br>
     <br>
