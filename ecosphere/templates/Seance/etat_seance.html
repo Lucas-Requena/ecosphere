@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block title %}
-    <title>État des Séance</title>
+    <title>État des Séances</title>
 {% endblock %}
 
 {% block body %}
@@ -10,66 +10,95 @@
 
         <form method="GET" action="/seance/etat" class="mb-4">
             <div>
-                <div>
-                    <div>
-                        <label for="date">Filtrer la date de la séance :</label>
-                        <select id="date" name="date" class="form-control">
-                            <option value="">Toutes les dates</option>
-                            {% for date in dates %}
-                                <option value="{{ date['DateSeance'] }}"
-                                        {% if request.args.get('date') == date['DateSeance'] %}selected{% endif %}>
-                                    {{ date['DateSeance'] }}
-                                </option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </div>
-            <br>
+                <label for="date">Filtrer la date de la séance :</label>
+                <select id="date" name="date" class="form-control">
+                    <option value="">Toutes les dates</option>
+                    {% for date in dates %}
+                        <option value="{{ date['DateSeance'] }}"
+                                {% if request.args.get('date') == date['DateSeance'] %}selected{% endif %}>
+                            {{ date['DateSeance'] }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
             <br>
 
             <div>
                 <label for="places_disponibles_min">Nombre de places disponibles minimum :</label>
                 <input type="number" id="places_disponibles_min" name="places_disponibles_min"
-                value="{{ request.args.get('places_disponibles_min', '') }}" class="form-control">
+                       value="{{ request.args.get('places_disponibles_min', '') }}" class="form-control">
             </div>
-
-            <br>
             <br>
 
             <div>
                 <label for="lieu">Filtrer le lieu de la séance :</label>
                 <select id="lieu" name="lieu" class="form-control">
-                <option value="">Tous les lieux</option>
-                {% for lieu in lieux %}
+                    <option value="">Tous les lieux</option>
+                    {% for lieu in lieux %}
                         <option value="{{ lieu['IDlieu'] }}"
-                    {% if request.args.get('lieu') == lieu['IDlieu'] %}selected{% endif %}>
-                    {{ lieu['NomLieu'] }}
-                </option>
-                {% endfor %}
+                                {% if request.args.get('lieu') == lieu['IDlieu'] %}selected{% endif %}>
+                            {{ lieu['NomLieu'] }}
+                        </option>
+                    {% endfor %}
                 </select>
             </div>
-
-            <br>
             <br>
 
             <div>
                 <label for="atelier">Filtrer l'atelier de la séance :</label>
                 <select id="atelier" name="atelier" class="form-control">
-                <option value="">Tous les ateliers</option>
-                {% for atelier in ateliers %}
+                    <option value="">Tous les ateliers</option>
+                    {% for atelier in ateliers %}
                         <option value="{{ atelier['id_atelier'] }}"
-                    {% if request.args.get('atelier') == atelier['id_atelier'] %}selected{% endif %}>
-                    {{ atelier['Nom_Atelier'] }}
-                </option>
-                {% endfor %}
+                                {% if request.args.get('atelier') == atelier['id_atelier'] %}selected{% endif %}>
+                            {{ atelier['Nom_Atelier'] }}
+                        </option>
+                    {% endfor %}
                 </select>
             </div>
-
             <br>
-            <br>
-
 
             <button type="submit" class="btn btn-primary">Appliquer</button>
         </form>
+
+        <h2 class="mt-4">Séances filtrées</h2>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Date Séance</th>
+                    <th>Places Disponibles</th>
+                    <th>Lieu</th>
+                    <th>Atelier</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% if seances | length > 0 %}
+                {% for seance in seances %}
+                    <tr>
+                        <td>{{ seance['DateSeance'] }}</td>
+                        <td>{{ seance['PlacesDisponibles'] }}</td>
+                        <td>
+                            {% for lieu in lieux %}
+                                {% if lieu['IDlieu'] == seance['IDlieu'] %}
+                                    {{ lieu['NomLieu'] }}
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for atelier in ateliers %}
+                                {% if atelier['id_atelier'] == seance['id_atelier'] %}
+                                    {{ atelier['Nom_Atelier'] }}
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="5" class="text-center">Aucune séance ne correspond.</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
     </div>
 {% endblock %}
