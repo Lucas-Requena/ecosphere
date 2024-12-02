@@ -336,38 +336,47 @@ def delete_seance():
 @app.route('/seance/etat', methods=['GET'])
 def etat_seance():
     date_filtre = request.args.get('date')
+    places_disponibles_min = request.args.get('places_disponibles_min')
+    lieu_filtre = request.args.get('lieu')
+    atelier_filtre = request.args.get('atelier')
+
     mycursor = get_db().cursor()
 
     sql_dates = '''SELECT DISTINCT DateSeance FROM Seance ORDER BY DateSeance'''
     mycursor.execute(sql_dates)
     dates = mycursor.fetchall()
 
-    if date_filtre:
-        sql = '''SELECT AVG(Note_Seance) AS moyenne
-                 FROM Evaluation
-                 INNER JOIN Seance ON Evaluation.idSeance = Seance.id_Seance
-                 WHERE Seance.DateSeance = %s'''
-        mycursor.execute(sql, (date_filtre,))
-        moyenne_note_seance = mycursor.fetchone()['moyenne']
-    else:
-        sql = '''SELECT AVG(Note_Seance) AS moyenne
-                 FROM Evaluation
-                 INNER JOIN Seance ON Evaluation.idSeance = Seance.id_Seance'''
-        mycursor.execute(sql)
-        moyenne_note_seance = mycursor.fetchone()['moyenne']
-
-    sql = '''SELECT id_Seance, PlacesDisponibles FROM Seance'''
-    mycursor.execute(sql)
-    seances = mycursor.fetchall()
-
-    sql = 'SELECT IDlieu, NomLieu FROM Lieu'
-    mycursor.execute(sql)
+    sql_lieux = '''SELECT IDlieu, NomLieu FROM Lieu'''
+    mycursor.execute(sql_lieux)
     lieux = mycursor.fetchall()
 
-    sql = 'SELECT id_atelier, Nom_Atelier FROM Atelier'
-    mycursor.execute(sql)
+    sql_ateliers = '''SELECT id_atelier, Nom_Atelier FROM Atelier'''
+    mycursor.execute(sql_ateliers)
     ateliers = mycursor.fetchall()
 
+    sql = '''SELECT Seance.id_Seance AS id, Seance.DateSeance, Seance.PlacesDisponibles, Seance.IDlieu, Seance.id_atelier
+             FROM Seance
+             WHERE 1=1'''
+
+    params = []
+    if date_filtre:
+        sql += ' AND Seance.DateSeance = %s'
+        params.append(date_filtre)
+
+    if places_disponibles_min:
+        sql += ' AND Seance.PlacesDisponibles >= %s'
+        params.append(int(places_disponibles_min))
+
+    if lieu_filtre:
+        sql += ' AND Seance.IDlieu = %s'
+        params.append(int(lieu_filtre))
+
+    if atelier_filtre:
+        sql += ' AND Seance.id_atelier = %s'
+        params.append(int(atelier_filtre))
+
+    mycursor.execute(sql, tuple(params))
+    seances = mycursor.fetchall()
 
     return render_template('Seance/etat_seance.html' ,seances=seances, lieux=lieux,ateliers=ateliers,dates=dates, selected_date=date_filtre)
 
