@@ -333,6 +333,44 @@ def delete_seance():
     get_db().commit()
     return redirect('/seance/show')
 
+@app.route('/seance/etat', methods=['GET'])
+def etat_seance():
+    date_filtre = request.args.get('date')
+    mycursor = get_db().cursor()
+
+    sql_dates = '''SELECT DISTINCT DateSeance FROM Seance ORDER BY DateSeance'''
+    mycursor.execute(sql_dates)
+    dates = mycursor.fetchall()
+
+    if date_filtre:
+        sql = '''SELECT AVG(Note_Seance) AS moyenne
+                 FROM Evaluation
+                 INNER JOIN Seance ON Evaluation.idSeance = Seance.id_Seance
+                 WHERE Seance.DateSeance = %s'''
+        mycursor.execute(sql, (date_filtre,))
+        moyenne_note_seance = mycursor.fetchone()['moyenne']
+    else:
+        sql = '''SELECT AVG(Note_Seance) AS moyenne
+                 FROM Evaluation
+                 INNER JOIN Seance ON Evaluation.idSeance = Seance.id_Seance'''
+        mycursor.execute(sql)
+        moyenne_note_seance = mycursor.fetchone()['moyenne']
+
+    sql = '''SELECT id_Seance, PlacesDisponibles FROM Seance'''
+    mycursor.execute(sql)
+    seances = mycursor.fetchall()
+
+    sql = 'SELECT IDlieu, NomLieu FROM Lieu'
+    mycursor.execute(sql)
+    lieux = mycursor.fetchall()
+
+    sql = 'SELECT id_atelier, Nom_Atelier FROM Atelier'
+    mycursor.execute(sql)
+    ateliers = mycursor.fetchall()
+
+
+    return render_template('Seance/etat_seance.html' ,seances=seances, lieux=lieux,ateliers=ateliers,dates=dates, selected_date=date_filtre)
+
 
 
 
