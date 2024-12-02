@@ -501,10 +501,12 @@ def etat_inscription():
     participant_filtre = request.args.getlist('participant')
     mycursor = get_db().cursor()
 
+    # Récupérer les dates distinctes des séances
     sql_dates = '''SELECT DISTINCT DateSeance FROM Seance ORDER BY DateSeance'''
     mycursor.execute(sql_dates)
     dates = mycursor.fetchall()
 
+    # Calculer les statistiques globales des inscriptions
     if date_filtre:
         sql = '''SELECT COUNT(*) AS nombre, SUM(prix_inscription) AS total, AVG(prix_inscription) AS moyenne
                  FROM Inscription
@@ -518,6 +520,7 @@ def etat_inscription():
         mycursor.execute(sql)
         stats_globales = mycursor.fetchone()
 
+    # Calculer les statistiques par participant
     if participant_filtre:
         sql_participants = '''SELECT Participant.Nom_Participant, COUNT(Inscription.id_inscription) AS nombre, SUM(prix_inscription) AS total, AVG(prix_inscription) AS moyenne
                              FROM Inscription
@@ -531,6 +534,7 @@ def etat_inscription():
     else:
         stats_participant = {}
 
+    # Récupérer la liste des participants
     sql = 'SELECT idParticipant, Nom_Participant FROM Participant'
     mycursor.execute(sql)
     participants = mycursor.fetchall()
