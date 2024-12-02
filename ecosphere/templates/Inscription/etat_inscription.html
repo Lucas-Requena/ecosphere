@@ -10,84 +10,79 @@
         <h1 class="mb-4 text-center">État des Inscriptions</h1>
 
         <form method="GET" action="/inscription/etat" class="mb-4">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="date">Filtrer par date :</label>
-                        <select id="date" name="date" class="form-control">
-                            <option value="">Toutes les dates</option>
-                            {% for date in dates %}
-                                <option value="{{ date['DateSeance'] }}"
-                                        {% if request.args.get('date') == date['DateSeance'] %}selected{% endif %}>
-                                    {{ date['DateSeance'] }}
-                                </option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="seance">Filtrer par séance :</label>
-                        <select id="seance" name="seance" class="form-control">
-                            <option value="">Toutes les séances</option>
-                            {% for seance in seances %}
-                                <option value="{{ seance['id_Seance'] }}"
-                                        {% if request.args.get('seance') == seance['id_Seance'] %}selected{% endif %}>
-                                    {{ seance['Description'] }}
-                                </option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="animateur">Filtrer par animateur :</label>
-                        <select id="animateur" name="animateur" class="form-control">
-                            <option value="">Tous les animateurs</option>
-                            {% for animateur in animateurs %}
-                                <option value="{{ animateur['N_Animateur'] }}"
-                                        {% if request.args.get('animateur') == animateur['N_Animateur'] %}selected{% endif %}>
-                                    {{ animateur['Nom_Animateur'] }}
-                                </option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </div>
+            <div>
+                <label for="date">Filtrer la date de l'inscription :</label>
+                <select id="date" name="date" class="form-control">
+                    <option value="">Toutes les dates</option>
+                    {% for date in dates %}
+                        <option value="{{ date['DateSeance'] }}"
+                                {% if request.args.get('date') == date['DateSeance'] %}selected{% endif %}>
+                            {{ date['DateSeance'] }}
+                        </option>
+                    {% endfor %}
+                </select>
             </div>
+            <br>
 
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="prix_min">Prix minimum (€) :</label>
-                        <input type="number" id="prix_min" name="prix_min" class="form-control" value="{{ prix_min_filtre or '' }}">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="prix_max">Prix maximum (€) :</label>
-                        <input type="number" id="prix_max" name="prix_max" class="form-control" value="{{ prix_max_filtre or '' }}">
-                    </div>
-                </div>
+            <div>
+                <label for="prix_min">Prix minimum de l'inscription (€) :</label>
+                <input type="number" id="prix_min" name="prix_min"
+                       value="{{ request.args.get('prix_min', '') }}" class="form-control">
             </div>
+            <br>
 
-            <div class="form-group">
-                <label>Filtrer par participant :</label><br>
-                {% for participant in participants %}
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="participant" value="{{ participant['idParticipant'] }}"
-                            {% if participant['idParticipant'] in selected_participants %}checked{% endif %}>
-                        <label class="form-check-label">{{ participant['Nom_Participant'] }}</label>
-                    </div>
-                {% endfor %}
+            <div>
+                <label for="prix_max">Prix maximum de l'inscription (€) :</label>
+                <input type="number" id="prix_max" name="prix_max"
+                       value="{{ request.args.get('prix_max', '') }}" class="form-control">
             </div>
+            <br>
+
+            <div>
+                <label for="participant">Filtrer par participant :</label>
+                <select id="participant" name="participant" class="form-control">
+                    <option value="">Tous les participants</option>
+                    {% for participant in participants %}
+                        <option value="{{ participant['idParticipant'] }}"
+                                {% if request.args.get('participant') == participant['idParticipant'] %}selected{% endif %}>
+                            {{ participant['Nom_Participant'] }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <br>
 
             <button type="submit" class="btn btn-primary">Appliquer</button>
         </form>
 
-        <div class="results">
-            {% if stats_globales %}
-                <div class="alert alert-info">
-                    <h2>Statistiques Globales des Inscriptions</h2>
-                    <p><strong>Date :</strong> {{ selected_date or 'Toutes les dates' }}</p>
-                    <p><strong>Nombre total d'inscriptions :</strong> {{ stats_globales['nombre'] }}</p>
-                    <p><strong>Total des inscriptions (€) :</strong> {{ stats_global
+        <h2 class="mt-4">Inscriptions filtrées</h2>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Date Séance</th>
+                    <th>Nom du Participant</th>
+                    <th>Date d'Inscription</th>
+                    <th>Prix de l'Inscription (€)</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% if inscriptions | length > 0 %}
+                {% for inscription in inscriptions %}
+                    <tr>
+                        <td>{{ inscription['id'] }}</td>
+                        <td>{{ inscription['DateSeance'] }}</td>
+                        <td>{{ inscription['Nom_Participant'] }}</td>
+                        <td>{{ inscription['date_Inscription'] }}</td>
+                        <td>{{ inscription['prix_inscription'] }}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="5" class="text-center">Aucune inscription ne correspond.</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
